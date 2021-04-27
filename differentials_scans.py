@@ -78,7 +78,7 @@ def rescan(real_args):
                         config.PhysicsModelParameterRanges[i] = '{0}={1},{2}'.format(
                             rescan.POI, rescan.x_min, rescan.x_max
                             )
-            
+
                 config.tags.append('rescan')
                 scan_directly(args, config)
                 # postfit_and_scan(args, config)
@@ -120,6 +120,9 @@ def pth_ggH_scan(args):
 
 @flag_as_option
 def njets_scan(args):
+    print("differentialutils.get_decay_channel_tag(args): ",differentialutils.get_decay_channel_tag(args))
+    print("LatestPaths.ws.njets[differentialutils.get_decay_channel_tag(args)]: ",LatestPaths.ws.njets["combination"])
+    print("LatestPaths.ws.njets[differentialutils.get_decay_channel_tag(args)]: ",LatestPaths.ws.njets[differentialutils.get_decay_channel_tag(args)])
     ws = LatestPaths.ws.njets[differentialutils.get_decay_channel_tag(args)]
     config = differential_config(args, ws, 'njets')
     postfit_and_scan(args, config)
@@ -184,7 +187,7 @@ def differential_config(args, ws, obs_name):
     else:
         base_config.asimov = False
 
-    base_config.decay_channel = differentialutils.get_decay_channel_tag(args)    
+    base_config.decay_channel = differentialutils.get_decay_channel_tag(args)
     if args.hzz or args.hbb:
         base_config.nPointsPerJob = base_config.nPoints
     if args.combWithHbb:
@@ -193,11 +196,11 @@ def differential_config(args, ws, obs_name):
     if args.hbb or args.combWithHbb:
         base_config.minimizer_settings = [
             '--cminDefaultMinimizerType Minuit2',
-            '--cminDefaultMinimizerAlgo migrad',
-            '--minimizerStrategy 2',
-            '--minimizerTolerance 0.001',
+            '--cminDefaultMinimizerAlgo Migrad',
+            # '--minimizerStrategy 2',
+            # '--minimizerTolerance 0.001',
             '--robustFit 1',
-            '--minimizerAlgoForMinos Minuit2,Migrad',
+            # '--minimizerAlgoForMinos Minuit2,Migrad',
             ]
 
     base_config.datacard = ws
@@ -383,7 +386,7 @@ def ptjet_t2ws(args):
 #     pth_ggH_t2ws(args)
 #     njets_t2ws(args)
 #     rapidity_t2ws(args)
-#     ptjet_t2ws(args)    
+#     ptjet_t2ws(args)
 
 # @flag_as_option
 # def pth_smH_t2ws(args):

@@ -64,7 +64,7 @@ class CombineConfig(object):
 
         self.minimizer_settings = [
             '--cminDefaultMinimizerType Minuit2',
-            '--cminDefaultMinimizerAlgo migrad',
+            '--cminDefaultMinimizerAlgo Migrad',
             ]
 
         # Save the command line args in the config
@@ -215,7 +215,7 @@ class BaseCombineScan(object):
         if len(self.input.POIs) > 0 and not(self.dont_define_POIs):
             cmd.append( '-P ' + ' -P '.join(self.input.POIs) )
         if len(self.input.PhysicsModelParameterRanges) > 0:
-            cmd.append( '--setPhysicsModelParameterRanges ' + ':'.join(self.input.PhysicsModelParameterRanges) )
+            cmd.append( '--setParameterRanges ' + ':'.join(self.input.PhysicsModelParameterRanges) )
         if len(self.input.floatNuisances) > 0:
             cmd.append( '--floatNuisances ' + ','.join(self.input.floatNuisances) )
         if len(self.freezeNuisances) > 0:
@@ -227,12 +227,12 @@ class BaseCombineScan(object):
         cmd = []
         if not(self.input.asimov) and self.set_only_hard_physics_model_parameters:
             if len(self.input.hardPhysicsModelParameters) > 0:
-                cmd.append('--setPhysicsModelParameters ' + ','.join(self.input.hardPhysicsModelParameters))
+                cmd.append('--setParameters ' + ','.join(self.input.hardPhysicsModelParameters))
         else:
             # Do all parameters by default; overwrite with only hard in certain cases
             allPhysicsModelParameters = self.input.PhysicsModelParameters + self.input.hardPhysicsModelParameters
             if len(allPhysicsModelParameters) > 0:
-                cmd.append('--setPhysicsModelParameters ' + ','.join(allPhysicsModelParameters))
+                cmd.append('--setParameters ' + ','.join(allPhysicsModelParameters))
         return cmd
 
     def parse_command(self):
@@ -282,24 +282,43 @@ class BaseCombineScan(object):
         if len(self.input.saveFunctions) > 0:
             cmd.append('--saveSpecifiedFunc ' + ','.join(self.input.saveFunctions))
 
+        logging.info("self.onBatch = {}".format(self.onBatch))
         if self.onBatch:
-            if 't3' in os.environ['HOSTNAME']:
-                if not self.input.queue in [ 'all.q', 'long.q', 'short.q' ]:
-                    raise RuntimeError('Queue \'{0}\' is not available on PSI'.format(self.input.queue))
-                if self.input.jobPriority != 0:
-                    cmd.append(
-                        '--job-mode psi --task-name {0} --sub-opts=\'-q {1} -p {2}\' '
-                        .format( taskName, self.input.queue, self.input.jobPriority ),
-                        )
-                else:
-                    cmd.append(
-                        '--job-mode psi --task-name {0} --sub-opts=\'-q {1}\' '
-                        .format( taskName, self.input.queue ),
-                        )
+            logging.info("os.environ['HOSTNAME'] : {}".format(os.environ['HOSTNAME']))
+            logging.info("command: {}".format(cmd))
+            # if 't3' in os.environ['HOSTNAME']:
+            # if not self.input.queue in [ 'all.q', 'long.q', 'short.q' ]:
+                # raise RuntimeError('Queue \'{0}\' is not available on PSI'.format(self.input.queue))
+            if self.input.jobPriority != 0:
+                # cmd.append(
+                #     '--job-mode psi --task-name {0} --sub-opts=\'-q {1} -p {2}\' '
+                #     .format( taskName, self.input.queue, self.input.jobPriority ),
+                #     )
+                cmd.append(
+                    '--job-mode condor  --task-name {0} --sub-opts=\'+JobFlavour="espresso"\''.format(taskName)
+                    )
             else:
-                raise NotImplementedError( 'Only jobs submitted from T3 are implemented now' )
+                # cmd.append(
+                #     '--job-mode psi --task-name {0} --sub-opts=\'-q {1}\' '
+                #     .format( taskName, self.input.queue ),
+                #     )
+                cmd.append(
+                    '--job-mode condor  --task-name {0} --sub-opts=\'+JobFlavour="espresso"\''.format(taskName)
+                    )
+                # JobFlavour options:
+                #   espresso        = 20min
+                #   microcentury    = 1hr
+                #   longlunch       = 2hr
+                #   workday         = 8hr
+                #   tomorrow        = 1day
+                #   testmatch       = 3day
+                #   nextweek        = 1week
+            # else:
+                # raise NotImplementedError( 'Only jobs submitted from T3 are implemented now' )
 
+            logging.info("command (after job): {}".format(cmd))
         # Do POIs, ranges, etc.
+        # logging.info("self.get_parameter_settings(): {}",format(self.get_parameter_settings()))
         cmd.extend(self.get_parameter_settings())
 
         return cmd
@@ -420,7 +439,7 @@ class CombineScanSinglePoints(BaseCombineScan):
             cmd = self.parse_command()
             with core.enterdirectory(self.subDirectory):
                 output += self.execute_command(cmd)
-        
+
         self.register_jobids_in_jobmanager(output)
 
 

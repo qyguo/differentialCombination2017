@@ -50,7 +50,7 @@ class CombineConfigKBKC(differentials.combine.combine.CombineConfig):
     def __init__(self, args):
         super(CombineConfigKBKC, self).__init__(args)
         args = differentialutils.force_asimov(args)
-        self.onBatch       = True
+        self.onBatch       = False
         self.queue         = 'all.q'
         self.asimov = True if args.asimov else False
         self.decay_channel = differentialutils.get_decay_channel_tag(args)
@@ -125,7 +125,7 @@ class CombineConfigKBKC_couplingdependentBRs_scenario2(CombineConfigKBKC_couplin
         self.nPoints = 150*150
         self.set_parameter_range('kappab', -1.15, 1.15)
         self.set_parameter_range('kappac', -5.25, 5.25)
-        
+
     def set_ranges_hgg(self):
         self.nPointsPerJob = 147
         self.queue = 'all.q'

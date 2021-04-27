@@ -52,7 +52,7 @@ def projection_pth_smH_scan(args):
                 config.set_parameter_range(POI, 0.64, 1.4)
             else:
                 config.set_parameter_range(POI, 0.875, 1.14)
-    
+
     verbosity = 1
     if args.hbb:
         set_hbb_parameter_ranges(args, config)
@@ -93,7 +93,7 @@ def projection_pth_smH_scan_GT200(args):
                 config.set_parameter_range(POI, 0.64, 1.4)
             else:
                 config.set_parameter_range(POI, 0.875, 1.14)
-    
+
     if args.hbb:
         set_hbb_parameter_ranges(args, config)
     if args.hgg:
@@ -174,15 +174,15 @@ def differential_config(args, ws, obs_name, lumiscale=1.):
     base_config.queue         = 'short.q'
     base_config.asimov = True if args.asimov else False
 
-    base_config.decay_channel = differentialutils.get_decay_channel_tag(args)    
+    base_config.decay_channel = differentialutils.get_decay_channel_tag(args)
     if args.hbb or args.combWithHbb:
         base_config.minimizer_settings = [
             '--cminDefaultMinimizerType Minuit2',
-            '--cminDefaultMinimizerAlgo migrad',
-            '--minimizerStrategy 2',
-            '--minimizerTolerance 0.001',
+            '--cminDefaultMinimizerAlgo Migrad',
+            # '--minimizerStrategy 2',
+            # '--minimizerTolerance 0.001',
             '--robustFit 1',
-            '--minimizerAlgoForMinos Minuit2,Migrad',
+            # '--minimizerAlgoForMinos Minuit2,Migrad',
             ]
 
     base_config.datacard = ws

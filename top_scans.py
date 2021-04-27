@@ -27,10 +27,10 @@ def basic_config(args, hurry=False):
 
     if args.combWithHbb or args.hbb:
         config.minimizer_settings.extend([
-            '--minimizerStrategy 2',
-            '--minimizerTolerance 0.001',
+            # '--minimizerStrategy 2',
+            # '--minimizerTolerance 0.001',
             '--robustFit 1',
-            '--minimizerAlgoForMinos Minuit2,Migrad',
+            # '--minimizerAlgoForMinos Minuit2,Migrad',
             ])
     config.deltaNLLCutOff = 70.
     config.POIs = [ 'ct', 'cg' ]
@@ -48,10 +48,10 @@ def basic_config_ctcb(args):
 
     if args.combWithHbb or args.hbb:
         config.minimizer_settings.extend([
-            '--minimizerStrategy 2',
-            '--minimizerTolerance 0.001',
+            # '--minimizerStrategy 2',
+            # '--minimizerTolerance 0.001',
             '--robustFit 1',
-            '--minimizerAlgoForMinos Minuit2,Migrad',
+            # '--minimizerAlgoForMinos Minuit2,Migrad',
             ])
 
     config.deltaNLLCutOff = 70.
@@ -63,22 +63,22 @@ def basic_config_ctcb(args):
 #____________________________________________________________________
 approval = differentials.core.AttrDict.create_tree(['ktcg', 'ktkb'], ['couplingdependentBRs', 'floatingBRs', 'fixedBRs'])
 
-approval.ktcg.fixedBRs.combWithHbb = 'out/workspaces_May18/combWithHbb_Top_reweighted_scalingttH.root'
-approval.ktcg.floatingBRs.combWithHbb = 'out/workspaces_May29/combWithHbb_Top_reweighted_scalingttH_floatingBRs_constrainedbbZZ.root'
-approval.ktcg.floatingBRs.hgg = 'out/workspaces_Jun09/hgg_Top_reweighted_scalingttH_floatingBRs_constrainedbbZZ.root'
-approval.ktcg.floatingBRs.hzz = 'out/workspaces_Jun09/hzz_Top_reweighted_scalingttH_floatingBRs_constrainedbbZZ.root'
-approval.ktcg.couplingdependentBRs.combWithHbb = 'out/workspaces_May31/combWithHbb_Top_reweighted_scalingttH_couplingdependentBRs.root'
-approval.ktcg.couplingdependentBRs.hgg = 'out/workspaces_Jun09/hgg_Top_reweighted_scalingttH_couplingdependentBRs.root'
-approval.ktcg.couplingdependentBRs.hzz = 'out/workspaces_Jun09/hzz_Top_reweighted_scalingttH_couplingdependentBRs.root'
+approval.ktcg.fixedBRs.combWithHbb = 'out/workspaces_Apr27/combWithHbb_Top_reweighted_scalingttH.root'
+approval.ktcg.floatingBRs.combWithHbb = 'out/workspaces_Apr27/combWithHbb_Top_reweighted_scalingttH_floatingBRs_constrainedbbZZ.root'
+approval.ktcg.floatingBRs.hgg = 'out/workspaces_Apr27/hgg_Top_reweighted_scalingttH_floatingBRs_constrainedbbZZ.root'
+approval.ktcg.floatingBRs.hzz = 'out/workspaces_Apr27/hzz_Top_reweighted_scalingttH_floatingBRs_constrainedbbZZ.root'
+approval.ktcg.couplingdependentBRs.combWithHbb = 'out/workspaces_Apr27/combWithHbb_Top_reweighted_scalingttH_couplingdependentBRs.root'
+approval.ktcg.couplingdependentBRs.hgg = 'out/workspaces_Apr27/hgg_Top_reweighted_scalingttH_couplingdependentBRs.root'
+approval.ktcg.couplingdependentBRs.hzz = 'out/workspaces_Apr27/hzz_Top_reweighted_scalingttH_couplingdependentBRs.root'
 
-approval.ktkb.fixedBRs.combWithHbb = 'out/workspaces_May29/combWithHbb_TopCtCb_reweighted_scalingbbHttH.root'
-# approval.ktkb.floatingBRs.combWithHbb = 'out/workspaces_May29/combWithHbb_TopCtCb_reweighted_scalingbbHttH_floatingBRs_constrainedbbZZ.root'
-approval.ktkb.floatingBRs.combWithHbb = 'out/workspaces_Jun10/combWithHbb_TopCtCb_reweighted_scalingbbHttH_floatingBRs_constrainedbbZZ.root'
-approval.ktkb.floatingBRs.hgg = 'out/workspaces_Jun09/hgg_TopCtCb_reweighted_scalingbbHttH_floatingBRs_constrainedbbZZ.root'
-approval.ktkb.floatingBRs.hzz = 'out/workspaces_Jun09/hzz_TopCtCb_reweighted_scalingbbHttH_floatingBRs_constrainedbbZZ.root'
-approval.ktkb.couplingdependentBRs.combWithHbb = 'out/workspaces_May29/combWithHbb_TopCtCb_reweighted_scalingbbHttH_couplingdependentBRs.root'
-approval.ktkb.couplingdependentBRs.hgg = 'out/workspaces_Jun09/hgg_TopCtCb_reweighted_scalingbbHttH_couplingdependentBRs.root'
-approval.ktkb.couplingdependentBRs.hzz = 'out/workspaces_Jun09/hzz_TopCtCb_reweighted_scalingbbHttH_couplingdependentBRs.root'
+approval.ktkb.fixedBRs.combWithHbb = 'out/workspaces_Apr27/combWithHbb_TopCtCb_reweighted_scalingbbHttH.root'
+# approval.ktkb.floatingBRs.combWithHbb = 'out/workspaces_Apr27/combWithHbb_TopCtCb_reweighted_scalingbbHttH_floatingBRs_constrainedbbZZ.root'
+approval.ktkb.floatingBRs.combWithHbb = 'out/workspaces_Apr27/combWithHbb_TopCtCb_reweighted_scalingbbHttH_floatingBRs_constrainedbbZZ.root'
+approval.ktkb.floatingBRs.hgg = 'out/workspaces_Apr27/hgg_TopCtCb_reweighted_scalingbbHttH_floatingBRs_constrainedbbZZ.root'
+approval.ktkb.floatingBRs.hzz = 'out/workspaces_Apr27/hzz_TopCtCb_reweighted_scalingbbHttH_floatingBRs_constrainedbbZZ.root'
+approval.ktkb.couplingdependentBRs.combWithHbb = 'out/workspaces_Apr27/combWithHbb_TopCtCb_reweighted_scalingbbHttH_couplingdependentBRs.root'
+approval.ktkb.couplingdependentBRs.hgg = 'out/workspaces_Apr27/hgg_TopCtCb_reweighted_scalingbbHttH_couplingdependentBRs.root'
+approval.ktkb.couplingdependentBRs.hzz = 'out/workspaces_Apr27/hzz_TopCtCb_reweighted_scalingbbHttH_couplingdependentBRs.root'
 
 
 #____________________________________________________________________
@@ -139,12 +139,12 @@ def scan_top_scalingttH_floatingBRs_constrainedbbZZ(args):
     # Reasonably constant, can go up to 12 points
     # Keep same ranges for hgg/hzz for now
     # config.nPointsPerJob = 12
-    # config.set_parameter_range('ct', -4.2, 4.2) 
+    # config.set_parameter_range('ct', -4.2, 4.2)
     # config.set_parameter_range('cg', -0.30, 0.30)
 
     config.nPoints = 100*100
     config.nPointsPerJob = 12
-    config.set_parameter_range('ct', -6.0, 6.0) 
+    config.set_parameter_range('ct', -6.0, 6.0)
     config.set_parameter_range('cg', -0.45, 0.45)
 
     if args.hzz:
@@ -153,7 +153,7 @@ def scan_top_scalingttH_floatingBRs_constrainedbbZZ(args):
 
     if args.asimov:
         config.nPointsPerJob = 10
-        config.set_parameter_range('ct', -8.2, 8.2) 
+        config.set_parameter_range('ct', -8.2, 8.2)
         config.set_parameter_range('cg', -0.50, 0.50)
 
     differentialutils.run_postfit_scan(config)
@@ -271,7 +271,7 @@ def scan_top_scalingttH_floatingBRs_NONconstrainedbbZZ(args):
 def scan_topctcb_scalingbbHttH_floatingBRs(args):
     args = differentialutils.set_one_decay_channel(args, 'combWithHbb')
     config = basic_config_ctcb(args)
-    config.datacard = 'out/workspaces_May29/combWithHbb_TopCtCb_reweighted_scalingbbHttH_floatingBRs.root'
+    config.datacard = 'out/workspaces_Apr27/combWithHbb_TopCtCb_reweighted_scalingbbHttH_floatingBRs.root'
     config.tags.append('scalingbbHttH')
     config.tags.append('floatingBRs')
     config.set_parameter_range('ct', -10.0, 10.0)
@@ -292,10 +292,10 @@ def basic_config_points(args):
 
     if args.combWithHbb or args.hbb:
         config.minimizer_settings.extend([
-            '--minimizerStrategy 2',
-            '--minimizerTolerance 0.001',
+            # '--minimizerStrategy 2',
+            # '--minimizerTolerance 0.001',
             '--robustFit 1',
-            '--minimizerAlgoForMinos Minuit2,Migrad',
+            # '--minimizerAlgoForMinos Minuit2,Migrad',
             ])
 
     config.PhysicsModelParameters = [ 'ct=1.0', 'cg=0.0' ]
@@ -316,10 +316,10 @@ def basic_config_radial(args):
 
     if args.combWithHbb or args.hbb:
         config.minimizer_settings.extend([
-            '--minimizerStrategy 2',
-            '--minimizerTolerance 0.001',
+            # '--minimizerStrategy 2',
+            # '--minimizerTolerance 0.001',
             '--robustFit 1',
-            '--minimizerAlgoForMinos Minuit2,Migrad',
+            # '--minimizerAlgoForMinos Minuit2,Migrad',
             ])
 
     config.deltaNLLCutOff = 60.
@@ -337,7 +337,7 @@ def basic_config_radial(args):
 
 @flag_as_option
 def scan_top_radialpoints(args):
-    args = differentialutils.set_one_decay_channel(args, 'combWithHbb', asimov=True)    
+    args = differentialutils.set_one_decay_channel(args, 'combWithHbb', asimov=True)
     config = basic_config_points(args)
     config.datacard = 'out/workspaces_May22/combWithHbb_Top_reweighted_scalingttH_floatingBRs.root'
     config.make_unique_directory()
@@ -363,14 +363,14 @@ def scan_top_radialpoints(args):
 
 # @flag_as_option
 # def scan_top_radialktkg(args):
-#     args = differentialutils.set_one_decay_channel(args, 'combWithHbb', asimov=True)    
+#     args = differentialutils.set_one_decay_channel(args, 'combWithHbb', asimov=True)
 #     config = basic_config_radial(args)
 #     config.datacard = 'out/workspaces_May22/combWithHbb_Top_reweighted_scalingttH_radialctcg.root'
 #     differentialutils.run_postfit_scan(config)
 
 # @flag_as_option
 # def scan_top_radialktkg_hzz(args):
-#     args = differentialutils.set_one_decay_channel(args, 'hzz', asimov=True)    
+#     args = differentialutils.set_one_decay_channel(args, 'hzz', asimov=True)
 #     config = basic_config_radial(args)
 #     config.nPoints = 30
 #     config.saveFunctions.extend(['ct', 'cg', 'r_ggH_PTH_0_15'])

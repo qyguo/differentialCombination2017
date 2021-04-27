@@ -50,10 +50,10 @@ class CombineConfigKTCGKB(CombineConfigKBKC):
         self.minimizer_settings = [
             # '--cminDefaultMinimizerStrategy 0',
             # '--cminDefaultMinimizerTolerance 0.1',
-            '--minimizerStrategy 0',
-            '--minimizerTolerance 0.1',
-            '--cminFallbackAlgo "Minuit2,migrad,0:0.11"',
-            '--cminFallbackAlgo "Minuit2,migrad,0:0.12"',
+            # '--minimizerStrategy 0',
+            # '--minimizerTolerance 0.1',
+            '--cminFallbackAlgo "Minuit2,Migrad,0:0.11"',
+            '--cminFallbackAlgo "Minuit2,Migrad,0:0.12"',
             '--cminApproxPreFitTolerance=100',
             '--X-rtd MINIMIZER_MaxCalls=9999999',
             ]
@@ -61,19 +61,19 @@ class CombineConfigKTCGKB(CombineConfigKBKC):
     def minimizer_settings_overkill(self):
         logging.warning('Applying minimizer_settings that are overkill')
         self.minimizer_settings =[
-            '--minimizerStrategy 2',
-            '--minimizerTolerance 0.001',
+            # '--minimizerStrategy 2',
+            # '--minimizerTolerance 0.001',
             '--robustFit 1',
-            '--minimizerAlgoForMinos Minuit2,Migrad',
+            # '--minimizerAlgoForMinos Minuit2,Migrad',
             ]
 
     def minimizer_settings_reasonable(self):
         logging.warning('Applying minimizer_settings that are reasonable')
         self.minimizer_settings =[
-            '--minimizerStrategy 0',
-            '--minimizerTolerance 0.01',
+            # '--minimizerStrategy 0',
+            # '--minimizerTolerance 0.01',
             '--robustFit 1',
-            '--minimizerAlgoForMinos Minuit2,Migrad',
+            # '--minimizerAlgoForMinos Minuit2,Migrad',
             '--X-rtd MINIMIZER_MaxCalls=9999999',
             ]
 

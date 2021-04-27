@@ -19,7 +19,7 @@ class Job(object):
         self._n_points_set = False
         self.parameter_ranges = {}
         self._via_dopoints = False
-    
+
     def short_filename(self, filename):
         return fixed_length_string(osp.basename(filename), 30)
 
@@ -80,7 +80,7 @@ class Job(object):
             return
 
     def get_parameter_ranges(self):
-        match = re.search(r'--setPhysicsModelParameterRanges ([^ ]+)', self.combine_command)
+        match = re.search(r'--setParameterRanges ([^ ]+)', self.combine_command)
         parameter_ranges = {}
         if match:
             for rangestr in match.group(1).split(':'):
@@ -187,7 +187,7 @@ class ScanAccountant(object):
         self.scandir = osp.abspath(scandir)
         self.jobs = []
         self._ready = False
-    
+
     def exists(self):
         return osp.isdir(scandir)
 
@@ -205,7 +205,7 @@ class ScanAccountant(object):
 
         for sh_file in glob(osp.join(self.scandir, '*.sh')):
             job = Job(sh_file)
-            
+
             key_sh = osp.basename(job.sh_file)
             if not(key_sh in self.shfile_combineline_dict):
                 logging.warning(
@@ -400,7 +400,7 @@ class ScanAccountant(object):
                 self.mean_cpu_per_point, self.std_cpu_per_point,
                 self.mean_cpu_per_point*60., self.std_cpu_per_point*60.,
                 self.real_n_points,
-                ndec = self.n_decimals                
+                ndec = self.n_decimals
                 )
             )
 
@@ -409,7 +409,7 @@ class ScanAccountant(object):
             .format(
                 self.perc90_cpu_per_point, self.perc90_cpu_per_point*60.,
                 self.perc98_cpu_per_point, self.perc98_cpu_per_point*60.,
-                ndec = self.n_decimals                
+                ndec = self.n_decimals
                 )
             )
 

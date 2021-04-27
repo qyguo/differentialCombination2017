@@ -156,7 +156,7 @@ class T2WSKBKC(differentials.combine.t2ws.T2WS):
             '--PO binBoundaries={0}'
             .format(','.join([str(b) for b in self.obs.binning]))
             )
-        
+
         self.is_reweighted = False
         self.tags.append('unreweighted')
 
@@ -257,7 +257,7 @@ class T2WSKTCGKB(differentials.combine.t2ws.T2WS):
             '--PO binBoundaries={0}'
             .format(','.join([str(b) for b in self.obs.binning]))
             )
-        
+
         self.is_reweighted = False
         self.tags.append('unreweighted')
 
@@ -301,8 +301,8 @@ class T2WSKTCGKB(differentials.combine.t2ws.T2WS):
         self.is_reweighted = True
 
     def add_theory_uncertainties(self, uncorrelated=False):
-        correlation_matrix   = 'out/scalecorrelations_Mar06/corrMat_tophighpt.txt'
-        theory_uncertainties = 'out/scalecorrelations_Mar06/errors_tophighpt.txt'
+        correlation_matrix   = 'out/scalecorrelations_Apr27_tophighpt/corrmat_tophighpt_tophighpt.txt'
+        theory_uncertainties = 'out/scalecorrelations_Apr27_tophighpt/errors_tophighpt_tophighpt.txt'
         if uncorrelated:
             correlation_matrix = LatestPaths.correlationMatrix_Yukawa_Uncorrelated # Uncorrelated
             self.tags.append('uncorrelatedTheoryUnc')

@@ -1,3 +1,5 @@
+import differentials.core as core
+
 class AttrDict(dict):
     def __init__(self, *args, **kwargs):
         super(AttrDict, self).__init__(*args, **kwargs)
@@ -74,80 +76,80 @@ card.top.combination_last2BinsDropped = 'suppliedInput/Top_combination_pth_ggH_M
 # Workspaces
 
 ws.pth_ggH = AttrDict()
-ws.pth_ggH.hgg = 'out/workspaces_Mar02/ws_pth_ggH_hgg.root'
-ws.pth_ggH.hzz = 'out/workspaces_Feb28/ws_pth_ggH_hzz.root'
-ws.pth_ggH.hbb = 'out/workspaces_Mar02/ws_pth_ggH_hbb.root'
-ws.pth_ggH.combination = 'out/workspaces_Mar01/ws_pth_ggH_combination.root'
-ws.pth_ggH.combWithHbb = 'out/workspaces_May17/ws_pth_ggH_combWithHbb.root' # Contains a nuisance for xH
+ws.pth_ggH.hgg = 'out/workspaces_Apr27/ws_pth_ggH_hgg.root'
+ws.pth_ggH.hzz = 'out/workspaces_Apr27/ws_pth_ggH_hzz.root'
+ws.pth_ggH.hbb = 'out/workspaces_Apr27/ws_pth_ggH_hbb.root'
+ws.pth_ggH.combination = 'out/workspaces_Apr27/ws_pth_ggH_combination.root'
+ws.pth_ggH.combWithHbb = 'out/workspaces_Apr27/ws_pth_ggH_combWithHbb.root' # Contains a nuisance for xH
 
 ws.pth_smH = AttrDict()
-ws.pth_smH.hgg = 'out/workspaces_Mar14/ws_pth_smH_hgg.root'
-ws.pth_smH.hzz = 'out/workspaces_Mar14/ws_pth_smH_hzz.root'
-ws.pth_smH.hbb = 'out/workspaces_Mar14/ws_pth_smH_hbb.root'
-ws.pth_smH.combination = 'out/workspaces_Mar14/ws_pth_smH_combination.root'
-ws.pth_smH.combWithHbb = 'out/workspaces_Mar14/ws_pth_smH_combWithHbb.root'
+ws.pth_smH.hgg = 'out/workspaces_Apr27/ws_pth_smH_hgg.root'
+ws.pth_smH.hzz = 'out/workspaces_Apr27/ws_pth_smH_hzz.root'
+ws.pth_smH.hbb = 'out/workspaces_Apr27/ws_pth_smH_hbb.root'
+ws.pth_smH.combination = 'out/workspaces_Apr27/ws_pth_smH_combination.root'
+ws.pth_smH.combWithHbb = 'out/workspaces_Apr27/ws_pth_smH_combWithHbb.root'
 
 ws.njets = AttrDict()
-ws.njets.combination = 'out/workspaces_Mar19/ws_njets_combination.root'
-ws.njets.hgg = 'out/workspaces_Mar19/ws_njets_hgg.root'
-ws.njets.hzz = 'out/workspaces_Mar19/ws_njets_hzz.root'
+ws.njets.combination = 'out/workspaces_Apr27/ws_njets_combination.root'
+ws.njets.hgg = 'out/workspaces_Apr27/ws_njets_hgg.root'
+ws.njets.hzz = 'out/workspaces_Apr27/ws_njets_hzz.root'
 ws.ptjet = AttrDict()
-ws.ptjet.combination = 'out/workspaces_Mar19/ws_ptjet_combination.root'
-ws.ptjet.hgg = 'out/workspaces_Mar19/ws_ptjet_hgg.root'
-ws.ptjet.hzz = 'out/workspaces_Mar19/ws_ptjet_hzz.root'
+ws.ptjet.combination = 'out/workspaces_Apr27/ws_ptjet_combination.root'
+ws.ptjet.hgg = 'out/workspaces_Apr27/ws_ptjet_hgg.root'
+ws.ptjet.hzz = 'out/workspaces_Apr27/ws_ptjet_hzz.root'
 ws.rapidity = AttrDict()
-ws.rapidity.combination = 'out/workspaces_Mar19/ws_rapidity_combination.root'
-ws.rapidity.hgg = 'out/workspaces_Mar19/ws_rapidity_hgg.root'
-ws.rapidity.hzz = 'out/workspaces_Mar19/ws_rapidity_hzz.root'
+ws.rapidity.combination = 'out/workspaces_Apr27/ws_rapidity_combination.root'
+ws.rapidity.hgg = 'out/workspaces_Apr27/ws_rapidity_hgg.root'
+ws.rapidity.hzz = 'out/workspaces_Apr27/ws_rapidity_hzz.root'
 ws.totalXS = AttrDict()
-ws.totalXS.combination = 'out/workspaces_Apr12/combination_inclusive_Mar19_multiSignalModel.root'
-ws.totalXS.hgg = 'out/workspaces_Apr12/Datacard_13TeV_differential_InclusiveNNLOPS_multiSignalModel.root'
-ws.totalXS.hzz = 'out/workspaces_Apr12/hzz4l_comb_13TeV_xs_multiSignalModel.root'
-ws.ratioOfBRs = 'out/workspaces_Apr12/combination_inclusive_Mar19_extendedMultiSignalModel_ratioOfBRs.root'
+ws.totalXS.combination = 'out/workspaces_Apr27/combination_inclusive_Mar19_multiSignalModel.root'
+ws.totalXS.hgg = 'out/workspaces_Apr27/Datacard_13TeV_differential_InclusiveNNLOPS_multiSignalModel.root'
+ws.totalXS.hzz = 'out/workspaces_Apr27/hzz4l_comb_13TeV_xs_multiSignalModel.root'
+ws.ratioOfBRs = 'out/workspaces_Apr27/combination_inclusive_Mar19_extendedMultiSignalModel_ratioOfBRs.root'
 
 ws.top = AttrDict()
 ws.top.nominal = AttrDict()
-ws.top.nominal.combination = 'out/workspaces_Mar13/combination_Top_reweighted_noBinsDropped.root'
-ws.top.nominal.combWithHbb = 'out/workspaces_Mar13/combWithHbb_Top_reweighted_noBinsDropped.root'
-ws.top.nominal.hbb = 'out/workspaces_Mar14/hbb_Top_reweighted_noBinsDropped.root'
-ws.top.nominal.hgg = 'out/workspaces_Mar14/hgg_Top_reweighted_noBinsDropped.root'
-ws.top.nominal.hzz = 'out/workspaces_Mar14/hzz_Top_reweighted_noBinsDropped.root'
+ws.top.nominal.combination = 'out/workspaces_Apr27/combination_Top_reweighted_noBinsDropped.root'
+ws.top.nominal.combWithHbb = 'out/workspaces_Apr27/combWithHbb_Top_reweighted_noBinsDropped.root'
+ws.top.nominal.hbb = 'out/workspaces_Apr27/hbb_Top_reweighted_noBinsDropped.root'
+ws.top.nominal.hgg = 'out/workspaces_Apr27/hgg_Top_reweighted_noBinsDropped.root'
+ws.top.nominal.hzz = 'out/workspaces_Apr27/hzz_Top_reweighted_noBinsDropped.root'
 
-ws.top.lumiScale = 'out/workspaces_Apr11/combWithHbb_Top_reweighted_noBinsDropped_lumiScale.root'
+ws.top.lumiScale = 'out/workspaces_Apr27/combWithHbb_Top_reweighted_noBinsDropped_lumiScale.root'
 ws.top.last2BinsDropped = AttrDict()
-ws.top.last2BinsDropped.combWithHbb = 'out/workspaces_Mar12/combWithHbb_Top_reweighted_last2BinsDropped.root'
-ws.top.last2BinsDropped.combination = 'out/workspaces_Mar12/combination_Top_reweighted_last2BinsDropped.root'
+ws.top.last2BinsDropped.combWithHbb = 'out/workspaces_Apr27/combWithHbb_Top_reweighted_last2BinsDropped.root'
+ws.top.last2BinsDropped.combination = 'out/workspaces_Apr27/combination_Top_reweighted_last2BinsDropped.root'
 ws.top.BRcouplingDependency = 'combWithHbb_Top_reweighted_BRcouplingDependency.root'
 
 ws.yukawa = AttrDict()
 ws.yukawa.nominal = AttrDict()
-ws.yukawa.nominal.combination = 'out/workspaces_Mar09/combination_Yukawa_reweighted_nominal.root'
-ws.yukawa.nominal.hgg = 'out/workspaces_Mar09/hgg_Yukawa_reweighted_nominal.root'
-ws.yukawa.nominal.hzz = 'out/workspaces_Mar15/hzz_Yukawa_reweighted_nominal.root'
+ws.yukawa.nominal.combination = 'out/workspaces_Apr27/combination_Yukawa_reweighted_nominal.root'
+ws.yukawa.nominal.hgg = 'out/workspaces_Apr27/hgg_Yukawa_reweighted_nominal.root'
+ws.yukawa.nominal.hzz = 'out/workspaces_Apr27/hzz_Yukawa_reweighted_nominal.root'
 
 ws.yukawa.couplingdependentBRs = AttrDict()
-ws.yukawa.couplingdependentBRs.combination = 'out/workspaces_May22/combination_Yukawa_reweighted_scalingbbH_couplingdependentBRs.root'
-ws.yukawa.couplingdependentBRs.hgg = 'out/workspaces_May26/hgg_Yukawa_reweighted_scalingbbH_couplingdependentBRs.root'
-ws.yukawa.couplingdependentBRs.hzz = 'out/workspaces_May26/hzz_Yukawa_reweighted_scalingbbH_couplingdependentBRs.root'
+ws.yukawa.couplingdependentBRs.combination = 'out/workspaces_Apr27/combination_Yukawa_reweighted_scalingbbH_couplingdependentBRs.root'
+ws.yukawa.couplingdependentBRs.hgg = 'out/workspaces_Apr27/hgg_Yukawa_reweighted_scalingbbH_couplingdependentBRs.root'
+ws.yukawa.couplingdependentBRs.hzz = 'out/workspaces_Apr27/hzz_Yukawa_reweighted_scalingbbH_couplingdependentBRs.root'
 
 
 ws.yukawa.unreweighted = AttrDict()
-ws.yukawa.unreweighted.combination = 'out/workspaces_Mar09/combination_Yukawa_nominal.root'
-ws.yukawa.unreweighted.hgg = 'out/workspaces_Mar09/hgg_Yukawa_nominal.root'
-ws.yukawa.unreweighted.hzz = 'out/workspaces_Mar15/hzz_Yukawa_nominal.root'
+ws.yukawa.unreweighted.combination = 'out/workspaces_Apr27/combination_Yukawa_nominal.root'
+ws.yukawa.unreweighted.hgg = 'out/workspaces_Apr27/hgg_Yukawa_nominal.root'
+ws.yukawa.unreweighted.hzz = 'out/workspaces_Apr27/hzz_Yukawa_nominal.root'
 
-ws.yukawa.lumiScale = 'out/workspaces_Mar12/combination_Yukawa_reweighted_lumiScale.root'
-ws.yukawa.noTheoryUnc = 'out/workspaces_Mar12/combination_Yukawa_reweighted_noTheoryUnc.root'
-ws.yukawa.profiledTotalXS = 'out/workspaces_Mar12/combination_Yukawa_reweighted_profiledTotalXS.root'
-ws.yukawa.uncorrelatedTheoryUnc = 'out/workspaces_Mar12/combination_Yukawa_reweighted_uncorrelatedTheoryUnc.root'
-ws.yukawa.BRcouplingDependency = 'out/workspaces_Mar20/combination_Yukawa_reweighted_BRcouplingDependency.root'
+ws.yukawa.lumiScale = 'out/workspaces_Apr27/combination_Yukawa_reweighted_lumiScale.root'
+ws.yukawa.noTheoryUnc = 'out/workspaces_Apr27/combination_Yukawa_reweighted_noTheoryUnc.root'
+ws.yukawa.profiledTotalXS = 'out/workspaces_Apr27/combination_Yukawa_reweighted_profiledTotalXS.root'
+ws.yukawa.uncorrelatedTheoryUnc = 'out/workspaces_Apr27/combination_Yukawa_reweighted_uncorrelatedTheoryUnc.root'
+ws.yukawa.BRcouplingDependency = 'out/workspaces_Apr27/combination_Yukawa_reweighted_BRcouplingDependency.root'
 
 ws.topctcb = AttrDict()
 ws.topctcb.nominal = AttrDict()
-ws.topctcb.nominal.combWithHbb = 'out/workspaces_Mar20/combWithHbb_TopCtCb_reweighted_noBinsDropped.root'
-ws.topctcb.nominal.hgg = 'out/workspaces_Mar20/hgg_TopCtCb_reweighted_noBinsDropped.root'
-ws.topctcb.nominal.hzz = 'out/workspaces_Mar20/hzz_TopCtCb_reweighted_noBinsDropped.root'
-ws.topctcb.lumiScale = 'out/workspaces_Apr11/combWithHbb_TopCtCb_reweighted_noBinsDropped_lumiScale.root'
+ws.topctcb.nominal.combWithHbb = 'out/workspaces_Apr27/combWithHbb_TopCtCb_reweighted_noBinsDropped.root'
+ws.topctcb.nominal.hgg = 'out/workspaces_Apr27/hgg_TopCtCb_reweighted_noBinsDropped.root'
+ws.topctcb.nominal.hzz = 'out/workspaces_Apr27/hzz_TopCtCb_reweighted_noBinsDropped.root'
+ws.topctcb.lumiScale = 'out/workspaces_Apr27/combWithHbb_TopCtCb_reweighted_noBinsDropped_lumiScale.root'
 
 
 #____________________________________________________________________
@@ -157,16 +159,16 @@ theory.top = AttrDict()
 # theory.top.filedir = 'out/derivedTheoryFiles_Dec07_TopHighPt'
 # theory.top.correlation_matrix = 'out/correlationMatrices_Nov24_Top/corrMat_exp.txt'
 # theory.top.uncertainties = 'out/correlationMatrices_Nov24_Top/errors_for_corrMat_exp.txt'
-theory.top.filedir = 'out/theories_May17_tophighpt'
+theory.top.filedir = 'out/theories_Apr27_tophighpt'
 theory.top.correlation_matrix = ''
 theory.top.uncertainties = ''
 
 
 theory.yukawa = AttrDict()
-theory.yukawa.filedir = 'out/theories_Mar09_yukawa_summed'
-theory.yukawa.correlation_matrix = 'out/scalecorrelations_Mar09/corrMat_yukawa.txt'
-theory.yukawa.correlation_matrix_uncorrelated = 'out/scalecorrelations_Mar09/corrMat_yukawa_uncorrelated.txt'
-theory.yukawa.uncertainties = 'out/scalecorrelations_Mar09/errors_yukawa.txt'
+theory.yukawa.filedir = 'out/theories_Apr27_yukawa_summed'
+theory.yukawa.correlation_matrix = 'out/scalecorrelations_Apr27_yukawa/corrmat_yukawa_yukawa.txt'
+theory.yukawa.correlation_matrix_uncorrelated = 'out/scalecorrelations_Apr27_yukawa/corrMat_yukawa_uncorrelated.txt'
+theory.yukawa.uncertainties = 'out/scalecorrelations_Apr27_yukawa/errors_yukawa_yukawa.txt'
 
 theory.yukawa.filedir_gluoninduced = 'out/theories_Mar09_yukawa_gluoninduced'
 theory.yukawa.filedir_quarkinduced = 'out/theories_Mar09_yukawa_quarkinduced'
@@ -184,8 +186,8 @@ scan.pth_ggH.observed.combination = 'out/Scan_Mar02_pth_ggH_combination'
 scan.pth_ggH.observed.combination_statonly = 'out/Scan_Mar20_pth_ggH_combination_statonly'
 scan.pth_ggH.observed.combWithHbb_noxHunc = [ 'out/Scan_Mar02_pth_ggH_combWithHbb', 'out/Scan_Mar14_pth_ggH_combWithHbb_rescan', 'out/Scan_Mar14_pth_ggH_combWithHbb_rescan_0' ]
 scan.pth_ggH.observed.combWithHbb_statonly_noxHunc = 'out/Scan_Mar20_pth_ggH_combWithHbb_statonly'
-scan.pth_ggH.observed.combWithHbb = 'out/Scan_May17_pth_ggH_combWithHbb'
-scan.pth_ggH.observed.combWithHbb_statonly = 'out/Scan_May17_pth_ggH_combWithHbb_statonly'
+scan.pth_ggH.observed.combWithHbb = 'out/Scan_Apr27_pth_ggH_combWithHbb'
+scan.pth_ggH.observed.combWithHbb_statonly = 'out/Scan_Apr27_pth_ggH_combWithHbb_statonly'
 scan.pth_ggH.asimov = AttrDict()
 scan.pth_ggH.asimov.hgg = [ 'out/Scan_Mar02_pth_ggH_hgg_asimov' ]
 scan.pth_ggH.asimov.hzz = [ 'out/Scan_Mar02_pth_ggH_hzz_asimov', 'out/Scan_Mar14_pth_ggH_hzz_rescan_asimov' ]
@@ -218,39 +220,39 @@ scan.pth_smH.asimov.combination_statonly = 'out/Scan_Mar20_pth_smH_combination_s
 
 scan.njets = AttrDict()
 scan.njets.observed = AttrDict()
-scan.njets.observed.combination = 'out/Scan_Mar19_njets_combination'
-scan.njets.observed.hgg = 'out/Scan_Mar19_njets_hgg'
-scan.njets.observed.hzz = 'out/Scan_Mar19_njets_hzz'
-scan.njets.observed.combination_statonly = 'out/Scan_Mar19_njets_combination_statonly'
+scan.njets.observed.combination = 'out/Scan_Apr27_njets_combination'
+scan.njets.observed.hgg = 'out/Scan_Apr27_njets_hgg'
+scan.njets.observed.hzz = 'out/Scan_Apr27_njets_hzz'
+scan.njets.observed.combination_statonly = 'out/Scan_Apr27_njets_combination_statonly'
 scan.njets.asimov = AttrDict()
-scan.njets.asimov.combination = 'out/Scan_Mar19_njets_combination_asimov'
-scan.njets.asimov.hgg = 'out/Scan_Mar19_njets_hgg_asimov'
-scan.njets.asimov.hzz = 'out/Scan_Mar19_njets_hzz_asimov'
-scan.njets.asimov.combination_statonly = 'out/Scan_Mar19_njets_combination_statonly_asimov'
+scan.njets.asimov.combination = 'out/Scan_Apr27_njets_combination_asimov'
+scan.njets.asimov.hgg = 'out/Scan_Apr27_njets_hgg_asimov'
+scan.njets.asimov.hzz = 'out/Scan_Apr27_njets_hzz_asimov'
+scan.njets.asimov.combination_statonly = 'out/Scan_Apr27_njets_combination_statonly_asimov'
 
 scan.ptjet = AttrDict()
 scan.ptjet.observed = AttrDict()
-scan.ptjet.observed.combination = 'out/Scan_Mar19_ptjet_combination'
-scan.ptjet.observed.hgg = 'out/Scan_Mar19_ptjet_hgg'
-scan.ptjet.observed.hzz = 'out/Scan_Mar19_ptjet_hzz'
-scan.ptjet.observed.combination_statonly = 'out/Scan_Mar19_ptjet_combination_statonly'
+scan.ptjet.observed.combination = 'out/Scan_Apr27_ptjet_combination'
+scan.ptjet.observed.hgg = 'out/Scan_Apr27_ptjet_hgg'
+scan.ptjet.observed.hzz = 'out/Scan_Apr27_ptjet_hzz'
+scan.ptjet.observed.combination_statonly = 'out/Scan_Apr27_ptjet_combination_statonly'
 scan.ptjet.asimov = AttrDict()
-scan.ptjet.asimov.combination = 'out/Scan_Mar19_ptjet_combination_asimov'
-scan.ptjet.asimov.hgg = 'out/Scan_Mar19_ptjet_hgg_asimov'
-scan.ptjet.asimov.hzz = 'out/Scan_Mar19_ptjet_hzz_asimov'
-scan.ptjet.asimov.combination_statonly = 'out/Scan_Mar19_ptjet_combination_statonly_asimov'
+scan.ptjet.asimov.combination = 'out/Scan_Apr27_ptjet_combination_asimov'
+scan.ptjet.asimov.hgg = 'out/Scan_Apr27_ptjet_hgg_asimov'
+scan.ptjet.asimov.hzz = 'out/Scan_Apr27_ptjet_hzz_asimov'
+scan.ptjet.asimov.combination_statonly = 'out/Scan_Apr27_ptjet_combination_statonly_asimov'
 
 scan.rapidity = AttrDict()
 scan.rapidity.observed = AttrDict()
-scan.rapidity.observed.combination = 'out/Scan_Mar19_rapidity_combination'
-scan.rapidity.observed.hgg = 'out/Scan_Mar19_rapidity_hgg'
-scan.rapidity.observed.hzz = 'out/Scan_Mar19_rapidity_hzz'
-scan.rapidity.observed.combination_statonly = 'out/Scan_Mar19_rapidity_combination_statonly'
+scan.rapidity.observed.combination = 'out/Scan_Apr27_rapidity_combination'
+scan.rapidity.observed.hgg = 'out/Scan_Apr27_rapidity_hgg'
+scan.rapidity.observed.hzz = 'out/Scan_Apr27_rapidity_hzz'
+scan.rapidity.observed.combination_statonly = 'out/Scan_Apr27_rapidity_combination_statonly'
 scan.rapidity.asimov = AttrDict()
-scan.rapidity.asimov.combination = 'out/Scan_Mar19_rapidity_combination_asimov'
-scan.rapidity.asimov.hgg = 'out/Scan_Mar19_rapidity_hgg_asimov'
-scan.rapidity.asimov.hzz = 'out/Scan_Mar19_rapidity_hzz_asimov'
-scan.rapidity.asimov.combination_statonly = 'out/Scan_Mar19_rapidity_combination_statonly_asimov'
+scan.rapidity.asimov.combination = 'out/Scan_Apr27_rapidity_combination_asimov'
+scan.rapidity.asimov.hgg = 'out/Scan_Apr27_rapidity_hgg_asimov'
+scan.rapidity.asimov.hzz = 'out/Scan_Apr27_rapidity_hzz_asimov'
+scan.rapidity.asimov.combination_statonly = 'out/Scan_Apr27_rapidity_combination_statonly_asimov'
 
 scan.totalXS = AttrDict()
 scan.totalXS.combination = 'out/Scan_Apr12_totalXS_combination'

@@ -127,28 +127,28 @@ standard_titles = {
     'hbb' : 'H #rightarrow bb',
     # 'combWithHbb' : 'Comb. with H#rightarrowbb',
     'combWithHbb' : 'Combination',
-    # 
+    #
     'kappac' : '#kappa_{c}',
     'kappab' : '#kappa_{b}',
     'kappat' : '#kappa_{t}',
     'ct' : '#kappa_{t}',
     'cg' : 'c_{g}',
     'cb' : '#kappa_{b}',
-    # 
+    #
     'pth'  : 'p_{T}^{H}',
     'pth_smH'  : 'p_{T}^{H}',
     'pth_ggH'  : 'p_{T}^{H (ggH)}',
     'njets'    : 'N_{jets}',
     'ptjet'    : 'p_{T}^{jet}',
     'rapidity' : '|y_{H}|',
-    # 
+    #
     'diff_pth' : '#Delta#sigma/#Deltap_{T}^{H} (pb/GeV)',
     'unc_pth' : 'Unc. #Delta#sigma/#Deltap_{T}^{H} (%)',
-    # 
+    #
     # 'SM_Vittorio'       : 'ggH aMC@NLO, NNLOPS + HX',
     'SM_Vittorio'       : 'aMC@NLO, NNLOPS',
     'dnll' : '-2#Delta ln L',
-    # 
+    #
     'BR' : '#bf{#it{#Beta}}',
     # 'BR' : '#mathcal{B}',
     }
@@ -160,7 +160,7 @@ standard_titles_latex = {
     'combination' : 'Combination',
     'hbb'         : '$\\hboson \\rightarrow \\bquark\\bquark$',
     'combWithHbb' : 'Combination',
-    # 
+    #
     'pth_smH'  : '$\\pth$',
     'pth_ggH'  : '$\\pth$',
     'njets'    : '$\\njets$',
@@ -232,7 +232,7 @@ def __uniqueid__():
     current_seed=str(seed)
     # producing new ids
     while True:
-        # get current time 
+        # get current time
         current_time=mynow()
         if current_time <= old_time:
             # previous id generated in the same microsecond or Daylight saving time event occurs (when clocks are adjusted backward)
@@ -364,7 +364,7 @@ class RedirectStdout():
         self.enableDebugPrint = verbose
         self._is_redirected = False
         pass
-        
+
     def __enter__( self ):
         self.debug_redirected_logging('Entering RedirectStdout')
         self.captured_fd_r, self.captured_fd_w = os.pipe()
@@ -373,7 +373,7 @@ class RedirectStdout():
         self.debug_redirected_logging('  Copying stdout')
         self.copied_stdout = os.fdopen( os.dup(self.stdout_fd), 'wb' )
         sys.stdout.flush() # To flush library buffers that dup2 knows nothing about
-        
+
         # Overwrite stdout_fd with the target
         self.debug_redirected_logging('Overwriting target ({0}) with stdout_fd ({1})'.format(fileno(self.captured_fd_w), self.stdout_fd))
         os.dup2(fileno(self.captured_fd_w), self.stdout_fd)
@@ -553,6 +553,7 @@ def last_bin_is_overflow(POIs):
 # @deprecated
 def first_bin_is_underflow(POIs):
     """Checks if the first bin is an underflow bin. Assumes POIs are pre-sorted"""
+    print("POIs: ",POIs)
     left, right = get_range_from_str(POIs[0])
     if left == '-INF':
         return True
@@ -616,6 +617,6 @@ def print_progress_bar(iteration, total, prefix = 'Progress', suffix = 'Complete
     bar = fill * filledLength + '-' * (length - filledLength)
     print '\r%s |%s| %s%% %s' % (prefix, bar, percent, suffix),
     # Print New Line on Complete
-    if iteration == total: 
+    if iteration == total:
         print
 

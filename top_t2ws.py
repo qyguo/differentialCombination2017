@@ -125,8 +125,8 @@ def base_t2ws(args,
 
 def add_theory_uncertainties(t2ws, uncorrelated=False):
     # Theory uncertainties
-    correlation_matrix   = 'out/scalecorrelations_Mar06/corrMat_tophighpt.txt'
-    theory_uncertainties = 'out/scalecorrelations_Mar06/errors_tophighpt.txt'
+    correlation_matrix   = 'out/scalecorrelations_Apr27_tophighpt/corrmat_tophighpt_tophighpt.txt'
+    theory_uncertainties = 'out/scalecorrelations_Apr27_tophighpt/errors_tophighpt_tophighpt.txt'
     if uncorrelated:
         correlation_matrix = LatestPaths.correlationMatrix_Yukawa_Uncorrelated # Uncorrelated
         t2ws.tags.append('uncorrelatedTheoryUnc')

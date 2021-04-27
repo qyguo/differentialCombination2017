@@ -87,15 +87,15 @@ scandict_G.G0B_reweighted = 'out/Scan_Yukawa_May17_combination_G0B_reweighted_as
 approval = differentials.core.AttrDict.create_tree(['fixedBRs', 'couplingdependentBRs', 'floatingBRs'], ['asimov', 'observed'])
 
 approval.couplingdependentBRs.asimov.combination   = 'out/Scan_Yukawa_Jun05_combination_NONscalingbbH_couplingdependentBRs_asimov'
-approval.couplingdependentBRs.observed.combination = 'out/Scan_Yukawa_May30_combination_NONscalingbbH_couplingdependentBRs'
-approval.couplingdependentBRs.observed.hgg         = 'out/Scan_Yukawa_Jun07_hgg_NONscalingbbH_couplingdependentBRs'
-approval.couplingdependentBRs.observed.hzz         = 'out/Scan_Yukawa_Jun11_hzz_NONscalingbbH_couplingdependentBRs'
+approval.couplingdependentBRs.observed.combination = 'out/Scan_Yukawa_Apr28_combination_NONscalingbbH_couplingdependentBRs'
+approval.couplingdependentBRs.observed.hgg         = 'out/Scan_Yukawa_Apr28_hgg_NONscalingbbH_couplingdependentBRs'
+approval.couplingdependentBRs.observed.hzz         = 'out/Scan_Yukawa_Apr28_hzz_NONscalingbbH_couplingdependentBRs'
 
 # approval.floatingBRs.asimov.combination   = 'out/Scan_Yukawa_May24_combination_NONscalingbbH_floatingBRs_asimov'
 approval.floatingBRs.asimov.combination   = 'out/Scan_Yukawa_Jun09_combination_NONscalingbbH_floatingBRs_asimov'
-approval.floatingBRs.observed.combination = 'out/Scan_Yukawa_May30_combination_NONscalingbbH_floatingBRs'
-approval.floatingBRs.observed.hgg         = 'out/Scan_Yukawa_Jun07_hgg_NONscalingbbH_floatingBRs'
-approval.floatingBRs.observed.hzz         = 'out/Scan_Yukawa_Jun11_hzz_NONscalingbbH_floatingBRs_0'
+approval.floatingBRs.observed.combination = 'out/Scan_Yukawa_Apr28_combination_NONscalingbbH_floatingBRs'
+approval.floatingBRs.observed.hgg         = 'out/Scan_Yukawa_Apr27_hgg_NONscalingbbH_floatingBRs'
+approval.floatingBRs.observed.hzz         = 'out/Scan_Yukawa_Apr28_hzz_NONscalingbbH_floatingBRs'
 
 
 #____________________________________________________________________
@@ -464,7 +464,7 @@ def multicont_Yukawa_G2A(args):
 
     plot = differentials.plotting.plots.MultiContourPlot(
         'multicont_Yukawa_G2A',
-        [ 
+        [
             G2A,
             ],
         x_min=yukawa_x_min, x_max=yukawa_x_max, y_min=yukawa_y_min, y_max=yukawa_y_max
@@ -485,7 +485,7 @@ def multicont_Yukawa_G0(args):
 
     plot = differentials.plotting.plots.MultiContourPlot(
         'multicont_Yukawa_G0',
-        [ 
+        [
             G0A,
             G0B_reweighted,
             ],
@@ -517,7 +517,7 @@ def multicont_Yukawa_G1(args):
 
     plot = differentials.plotting.plots.MultiContourPlot(
         'multicont_Yukawa_G1',
-        [ 
+        [
             G1A_unreweighted,
             G1B,
             G1A,
@@ -551,7 +551,7 @@ def multicont_Yukawa_G1_noTheoryUnc(args):
 
     plot = differentials.plotting.plots.MultiContourPlot(
         'multicont_Yukawa_G1_noTheoryUnc',
-        [ 
+        [
             G1A,
             G1B,
             # G1A_scaledByMuTotalXS,
@@ -572,7 +572,7 @@ def multicont_Yukawa_compareBRuncertainties(args):
     # combination = differentials.scans.Scan2D('combination', x_coupling, y_coupling, scandir = scandict.combination)
     # combination.color = 1
     # combination.read()
-    
+
     # hgg = differentials.scans.Scan2D('hgg', x_coupling, y_coupling, scandir = scandict.hgg)
     # hgg.color = 2
     # hgg.read()
@@ -606,7 +606,7 @@ def multicont_Yukawa_reweighted(args):
     combination = differentials.scans.Scan2D('combination', x_coupling, y_coupling, scandir = scandict.combination)
     combination.color = 1
     combination.read()
-    
+
     hgg = differentials.scans.Scan2D('hgg', x_coupling, y_coupling, scandir = scandict.hgg)
     hgg.color = 2
     hgg.read()
@@ -629,7 +629,7 @@ def multicont_Yukawa_reweighted_paper(args):
     combination = differentials.scans.Scan2D('combination', x_coupling, y_coupling, scandir = scandict.combination)
     combination.color = 1
     combination.read()
-    
+
     hgg = differentials.scans.Scan2D('hgg', x_coupling, y_coupling, scandir = scandict.hgg)
     hgg.color = 2
     hgg.read()
@@ -660,7 +660,7 @@ def multicont_Yukawa_unreweighted(args):
     combination = differentials.scans.Scan2D('combination', x_coupling, y_coupling, scandir = scandict.combination)
     combination.color = 1
     combination.read()
-    
+
     hgg = differentials.scans.Scan2D('hgg', x_coupling, y_coupling, scandir = scandict.hgg)
     hgg.color = 2
     hgg.read()
@@ -796,14 +796,14 @@ def multicont_Yukawa_theoryCrossCheck(args):
     combination.read()
 
     no_theory_unc = differentials.scans.Scan2D('no_theory_unc', x_coupling, y_coupling,
-        scandir=LatestPaths.scan_combined_Yukawa_noTheoryUncertainties_asimov 
+        scandir=LatestPaths.scan_combined_Yukawa_noTheoryUncertainties_asimov
         )
     no_theory_unc.color = 4
     no_theory_unc.title = 'No th. uncertainty'
     no_theory_unc.read()
 
     uncorr_theory_unc = differentials.scans.Scan2D('uncorr_theory_unc', x_coupling, y_coupling,
-        scandir=LatestPaths.scan_combined_Yukawa_uncorrelatedTheoryUncertainties_asimov 
+        scandir=LatestPaths.scan_combined_Yukawa_uncorrelatedTheoryUncertainties_asimov
         )
     uncorr_theory_unc.color = 2
     uncorr_theory_unc.title = 'Uncorr. uncertainty'

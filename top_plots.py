@@ -134,7 +134,7 @@ def spline_ktcg_couplingdependentBRs(args, scan):
             spline.add_noise_selector(lambda ct, cg: (cg  >  (1./12.)+0.04 - (1./13.)*ct))
     if args.hgg:
         spline.negativity_is_zero = True
-    
+
     hist = spline.to_hist(nx=180, ny=180)
     hist.color = scan.color
     hist.name  = scan.name + '_splined'
@@ -594,7 +594,7 @@ def multicont_Top_scalingttH(args):
     # compare = True
     compare = False
     scans = []
-    
+
     if compare:
         combWithHbb = differentials.scans.Scan2D('combWithHbb', x_coupling, y_coupling, scandir=LatestPaths.scan.top.reweighted.asimov.combWithHbb)
         combWithHbb.color = 2
@@ -606,7 +606,7 @@ def multicont_Top_scalingttH(args):
     combWithHbb_scalingttH.color = 1
     combWithHbb_scalingttH.read()
     scans.append(combWithHbb_scalingttH)
-    
+
     plot = differentials.plotting.plots.MultiContourPlot(
         'multicont_Top_scalingttH' + ('_asimov' if args.asimov else '') + ('_asimov' if args.asimov else ''),
         scans,
@@ -997,7 +997,7 @@ def multicont_TopCtCb_scalingbbHttH(args):
 def multicont_Top_scalingttH_floatingBRs(args):
     args = differentialutils.set_one_decay_channel(args, 'combWithHbb')
     scans = []
-    
+
     if args.asimov:
         scandir = 'out/Scan_May23_Top_combWithHbb_scalingttH_floatingBRs_asimov'
     else:
@@ -1012,7 +1012,7 @@ def multicont_Top_scalingttH_floatingBRs(args):
     scalingttH.color = 1
     scalingttH.read()
     scans.append(scalingttH)
-    
+
     plot = differentials.plotting.plots.MultiContourPlot(
         'multicont_Top_scalingttH_floatingBRs' + ('_asimov' if args.asimov else ''),
         scans,
@@ -1162,7 +1162,7 @@ def multicont_Top_reweighted(args):
     combWithHbb.color = 1
     combWithHbb.read()
     scans.append(combWithHbb)
-    
+
     plot = differentials.plotting.plots.MultiContourPlot(
         'multicont_Top_reweighted' + ('_asimov' if args.asimov else ''),
         scans,
@@ -1183,7 +1183,7 @@ def multicont_Top_profiledTotalXS(args):
     combWithHbb_profiledTotalXS.color = 1
     combWithHbb_profiledTotalXS.title = 'Profiled #sigma_{tot}'
     combWithHbb_profiledTotalXS.read()
-    
+
     plot = differentials.plotting.plots.MultiContourPlot(
         'multicont_Top_profiledTotalXS' + ('_asimov' if args.asimov else ''),
         [combWithHbb_profiledTotalXS],
@@ -1211,7 +1211,7 @@ def multicont_Top_lumi300fb(args):
     lumi300fb.title = '300 fb^{-1}'
     # lumi300fb.contour_filter_method = 'max_distance_to_com'
     lumi300fb.read()
-    
+
     plot = differentials.plotting.plots.MultiContourPlot(
         'multicont_Top_lumi300fb' + ('_asimov' if args.asimov else ''),
         [combWithHbb, lumi300fb],
@@ -1384,9 +1384,9 @@ def multicont_Top_nominal(args):
     combWithHbb.color = 9
     combWithHbb.read()
     scans.append(combWithHbb)
-   
 
-    
+
+
     # hgg = differentials.scans.Scan2D('hgg', x_coupling, y_coupling,
     #     scandir = get_nominal(args).hgg
     #     )
@@ -1438,7 +1438,7 @@ def points_on_contour_Top(args):
     # ws = 'out/workspaces_Dec11/combinedCard_Nov03_CouplingModel_TopHighPt_withTheoryUncertainties.root'
     # ws = 'out/workspaces_Mar06/combWithHbb_Top_reweighted_nominal.root'
     # ws = LatestPaths.ws.top.nominal.combWithHbb
-    ws = 'out/workspaces_May31/combWithHbb_Top_reweighted_scalingttH_couplingdependentBRs.root'
+    ws = 'out/workspaces_Apr27/combWithHbb_Top_reweighted_scalingttH_couplingdependentBRs.root'
 
     # ======================================
     # Load into plot
@@ -1491,7 +1491,7 @@ def multicont_TopCtCb(args):
     combWithHbb.color = 1
     combWithHbb.read()
     scans.append(combWithHbb)
-    
+
     plot = differentials.plotting.plots.MultiContourPlot(
         'multicont_TopCtCb' + ('_asimov' if args.asimov else ''),
         scans,
@@ -1520,7 +1520,7 @@ def multicont_TopCtCb_lumi300fb(args):
     lumi300fb.title = '300 fb^{-1}'
     # lumi300fb.contour_filter_method = 'max_distance_to_com'
     lumi300fb.read()
-    
+
     plot = differentials.plotting.plots.MultiContourPlot(
         'multicont_TopCtCb_lumi300fb' + ('_asimov' if args.asimov else ''),
         [combWithHbb, lumi300fb],

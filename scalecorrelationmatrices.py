@@ -101,7 +101,7 @@ def yukawa_central_values(args):
     yukawa_exp_binning = [0.0, 15., 30., 45., 80., 120.]
     sm = differentials.theory.theory_utils.FileFinder(
         kappab=1.0, kappac=1.0, muR=1.0, muF=1.0, Q=1.0,
-        directory='out/theories_Mar09_yukawa_summed/'
+        directory='out/theories_Apr27_yukawa_summed/'
         ).get()[0]
     print sm.file
     xs = differentials.integral.Rebinner(sm.binBoundaries, sm.crosssection, yukawa_exp_binning).rebin()
@@ -119,7 +119,7 @@ def yukawa_central_values(args):
 def yukawa_scalecorrelations(args):
     variations = differentials.theory.theory_utils.FileFinder(
         kappab=1.0, kappac=1.0,
-        directory='out/theories_Mar09_yukawa_summed/'
+        directory='out/theories_Apr27_yukawa_summed/'
         ).get()
     sm = [v for v in variations if v.muR==1.0 and v.muF==1.0 and v.Q==1.0][0]
 
