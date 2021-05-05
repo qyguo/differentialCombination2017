@@ -219,7 +219,7 @@ class BaseCombineScan(object):
         if len(self.input.floatNuisances) > 0:
             cmd.append( '--floatNuisances ' + ','.join(self.input.floatNuisances) )
         if len(self.freezeNuisances) > 0:
-            cmd.append( '--freezeNuisances ' + ','.join(self.freezeNuisances) )
+            cmd.append( '--freezeParameters ' + ','.join(self.freezeNuisances) )
         cmd.extend(self.set_physics_model_parameters())
         return cmd
 
@@ -501,7 +501,7 @@ class CombineCorrMat(BaseCombineScan):
             '--saveWorkspace',
             # '--skipInitialFit',
             '--computeCovarianceMatrix=1',
-            '--freezeNuisances {0}'.format( ','.join(pdf_vars_to_freeze) ),
+            '--freezeParameters {0}'.format( ','.join(pdf_vars_to_freeze) ),
             ])
 
         return cmd

@@ -222,7 +222,7 @@ def pth_smH_plot(args):
         l.y = lambda c: c.GetBottomMargin() + 0.05 + yshift
     l.SetNDC()
     l.SetTextAlign(11)
-    l.SetTextFont(42) 
+    l.SetTextFont(42)
     l.SetTextSize(0.038 + 0.005)
     l.Draw()
 
@@ -233,7 +233,7 @@ def pth_smH_plot(args):
         )
     l2.SetNDC()
     l2.SetTextAlign(31)
-    l2.SetTextFont(42) 
+    l2.SetTextFont(42)
     l2.SetTextSize(0.04)
     l2.Draw()
 
@@ -341,7 +341,7 @@ def pth_ggH_plot(args):
         )
     l.SetNDC()
     l.SetTextAlign(11)
-    l.SetTextFont(42) 
+    l.SetTextFont(42)
     l.SetTextSize(0.038 + 0.005)
     l.Draw()
 
@@ -363,7 +363,7 @@ def pth_ggH_plot(args):
         )
     l2.SetNDC()
     l2.SetTextAlign(31)
-    l2.SetTextFont(42) 
+    l2.SetTextFont(42)
     l2.SetTextSize(0.04)
     l2.Draw()
 
@@ -379,21 +379,21 @@ def njets_plot(args):
     obstuple = LatestBinning.obstuple_njets
     scandict = LatestPaths.scan.njets.asimov if args.asimov else LatestPaths.scan.njets.observed
 
-    hgg = differentials.scans.DifferentialSpectrum('hgg', scandict.hgg)
-    hgg.set_sm(obstuple.hgg.crosssection_over_binwidth(normalize_by_second_to_last_bin_width=True))
-    hgg.add_stylesheet(style.copy(color=differentials.core.safe_colors.red, marker_style=26))
-    spectra.append(hgg)
+    # hgg = differentials.scans.DifferentialSpectrum('hgg', scandict.hgg)
+    # hgg.set_sm(obstuple.hgg.crosssection_over_binwidth(normalize_by_second_to_last_bin_width=True))
+    # hgg.add_stylesheet(style.copy(color=differentials.core.safe_colors.red, marker_style=26))
+    # spectra.append(hgg)
 
     hzz = differentials.scans.DifferentialSpectrum('hzz', scandict.hzz)
     hzz.set_sm(obstuple.hzz.crosssection_over_binwidth(normalize_by_second_to_last_bin_width=True))
     hzz.add_stylesheet(style.copy(color=differentials.core.safe_colors.blue, marker_style=32))
     spectra.append(hzz)
 
-    combination = differentials.scans.DifferentialSpectrum('combination', scandict.combination)
-    combination.no_overflow_label = True
-    combination.set_sm(obstuple.combination.crosssection_over_binwidth(normalize_by_second_to_last_bin_width=True))
-    combination.add_stylesheet(style.copy(color=1, plot_priority=20))
-    spectra.append(combination)
+    # combination = differentials.scans.DifferentialSpectrum('combination', scandict.combination)
+    # combination.no_overflow_label = True
+    # combination.set_sm(obstuple.combination.crosssection_over_binwidth(normalize_by_second_to_last_bin_width=True))
+    # combination.add_stylesheet(style.copy(color=1, plot_priority=20))
+    # spectra.append(combination)
 
     # Align the right boundary of all the spectra, but not at 10000
     x_max = max([ 2*s.binning()[-2]-s.binning()[-3] for s in spectra ])
@@ -413,30 +413,30 @@ def njets_plot(args):
         # # table.add_symm_improvement_row(combination, combWithHbb)
         # logging.info('Table:\n{0}'.format( table.repr_terminal() ))
         # return
-        rowproducer = differentials.plotting.tableproducer.SpectrumRowProducer(combination.binning(), last_bin_is_overflow=True)
+        rowproducer = differentials.plotting.tableproducer.SpectrumRowProducer(hzz.binning(), last_bin_is_overflow=True)
         rowproducer.do_xs = True
         table = differentials.plotting.newtables.BaseTable()
         table.latex_mode(True)
         table.append(rowproducer.produce_row_given_labels([
             '$\\njets$', '0', '1', '2', '3', '$\\ge$ 4'
             ]))
-        table.append(rowproducer.produce(hgg))
+        # table.append(rowproducer.produce(hgg))
         table.append(rowproducer.produce(hzz))
-        table.append(rowproducer.produce(combination))
+        # table.append(rowproducer.produce(combination))
         print table.produce_table_string()
         table.produce_to_file('tables_{0}/njets.tex'.format(differentials.core.datestr()))
         return
 
 
     # Get syst only shape
-    combination_statonly = differentials.scans.DifferentialSpectrum('combination_statonly', scandict.combination_statonly)
-    combination_statonly.set_sm(obstuple.combination.crosssection_over_binwidth(normalize_by_second_to_last_bin_width=True))
-    combination_statonly.read()
+    hzz_statonly = differentials.scans.DifferentialSpectrum('hzz_statonly', scandict.hzz_statonly)
+    hzz_statonly.set_sm(obstuple.hzz.crosssection_over_binwidth(normalize_by_second_to_last_bin_width=True))
+    hzz_statonly.read()
     systshapemaker = differentials.systshapemaker.SystShapeMaker()
-    systonly_histogram, systonly_histogram_xs = systshapemaker.get_systonly_histogram(combination, combination_statonly)
+    systonly_histogram, systonly_histogram_xs = systshapemaker.get_systonly_histogram(hzz, hzz_statonly)
 
     # Get SM histograms
-    sm_xs, sm_ratio = get_sm_histograms(obstuple.combination, normalize_by_second_to_last_bin_width=True, x_max=x_max)
+    sm_xs, sm_ratio = get_sm_histograms(obstuple.hzz, normalize_by_second_to_last_bin_width=True, x_max=x_max)
 
     # Start compiling plot
     plotname = 'spectra_{0}'.format(obs_name) + ('_asimov' if args.asimov else '')
@@ -461,11 +461,11 @@ def njets_plot(args):
     plot.bottom_y_max = 4.0
 
     # Apply fixed binning
-    reference_binning = combination.binning()
+    reference_binning = hzz.binning()
     plot.make_fixed_widths(reference_binning)
     plot.top_x_max = len(reference_binning)-1
     plot.bottom_x_max = len(reference_binning)-1
-    hgg.style().bin_center_offset = -0.17
+    # hgg.style().bin_center_offset = -0.17
     hzz.style().bin_center_offset = 0.17
     hzz.style().plot_priority = 8
     plot.add_lines_at_bin_boundaries(range(1,len(reference_binning)-1))
@@ -487,13 +487,13 @@ def njets_plot(args):
     plot.draw()
 
     l = differentials.plotting.pywrappers.Latex(
-        lambda c: 1-c.GetRightMargin() + leg_xshift + 0.02 - legw,        
+        lambda c: 1-c.GetRightMargin() + leg_xshift + 0.02 - legw,
         lambda c: 1-c.GetTopMargin()   + leg_yshift - legh - 0.041 - 0.009,
         '#sigma_{SM} from CYRM-2017-002'
         )
     l.SetNDC()
     l.SetTextAlign(11)
-    l.SetTextFont(42) 
+    l.SetTextFont(42)
     l.SetTextSize(0.035 + 0.005)
     l.Draw()
 
@@ -502,10 +502,150 @@ def njets_plot(args):
     plot.base_top.GetXaxis().SetNdivisions(500)
     plot.wrapup()
 
-
 #____________________________________________________________________
 @flag_as_option
 def ptjet_plot(args):
+    spectra = []
+    obs_name = 'ptjet'
+    obstuple = LatestBinning.obstuple_ptjet
+    scandict = LatestPaths.scan.ptjet.asimov if args.asimov else LatestPaths.scan.ptjet.observed
+
+    # hgg = differentials.scans.DifferentialSpectrum('hgg', scandict.hgg)
+    # hgg.set_sm(obstuple.hgg.crosssection_over_binwidth(normalize_by_second_to_last_bin_width=True))
+    # hgg.add_stylesheet(style.copy(color=differentials.core.safe_colors.red, marker_style=26))
+    # spectra.append(hgg)
+
+    hzz = differentials.scans.DifferentialSpectrum('hzz', scandict.hzz)
+    hzz.set_sm(obstuple.hzz.crosssection_over_binwidth(normalize_by_second_to_last_bin_width=True))
+    hzz.add_stylesheet(style.copy(color=differentials.core.safe_colors.blue, marker_style=32))
+    spectra.append(hzz)
+
+    # combination = differentials.scans.DifferentialSpectrum('combination', scandict.combination)
+    # combination.no_overflow_label = True
+    # combination.set_sm(obstuple.combination.crosssection_over_binwidth(normalize_by_second_to_last_bin_width=True))
+    # combination.add_stylesheet(style.copy(color=1, plot_priority=20))
+    # spectra.append(combination)
+
+    # Align the right boundary of all the spectra, but not at 10000
+    x_max = max([ 2*s.binning()[-2]-s.binning()[-3] for s in spectra ])
+    for s in spectra:
+        s.read()
+        s.drop_first_bin()
+        s.give_x_max(x_max)
+        s.draw_method = 'repr_vertical_bar_with_horizontal_lines_dashed_onlymerged'
+
+    if args.table:
+        rowproducer = differentials.plotting.tableproducer.SpectrumRowProducer(hzz.binning(), last_bin_is_overflow=True)
+        rowproducer.do_xs = True
+        table = differentials.plotting.newtables.BaseTable()
+        table.latex_mode(True)
+        table.append(rowproducer.produce_binning_row('$\\ptjet$ (GeV)'))
+        # table.append(rowproducer.produce(hgg))
+        table.append(rowproducer.produce(hzz))
+        # table.append(rowproducer.produce(combination))
+        print table.produce_table_string()
+        table.produce_to_file('tables_{0}/ptjet.tex'.format(differentials.core.datestr()))
+        return
+
+    # Get syst only shape
+    hzz_statonly = differentials.scans.DifferentialSpectrum('hzz_statonly', scandict.hzz_statonly)
+    hzz_statonly.set_sm(obstuple.hzz.crosssection_over_binwidth(normalize_by_second_to_last_bin_width=True))
+    hzz_statonly.read()
+    hzz_statonly.drop_first_bin()
+    systshapemaker = differentials.systshapemaker.SystShapeMaker()
+    systonly_histogram, systonly_histogram_xs = systshapemaker.get_systonly_histogram(hzz, hzz_statonly)
+
+    # Get SM histograms
+    obs = copy.deepcopy(obstuple.hzz)
+    obs.drop_first_bin()
+    sm_xs, sm_ratio = get_sm_histograms(obs, normalize_by_second_to_last_bin_width=True, x_max=x_max)
+
+    # Start compiling plot
+    plotname = 'spectra_{0}'.format(obs_name) + ('_asimov' if args.asimov else '')
+    plot = differentials.plotting.plots.SpectraPlot(plotname, spectra)
+    plot.draw_multiscans = True
+    plot.obsname = obs_name
+    plot.obsunit = 'GeV'
+    plot.overflow_label_base_offset = 0.33
+
+    # Add the SM and syst-only histograms
+    if systshapemaker.success:
+        plot.add_top(systonly_histogram_xs, systonly_histogram_xs.draw_method, plot.leg)
+        plot.add_bottom(systonly_histogram, systonly_histogram.draw_method)
+    plot.add_top(sm_xs, 'repr_basic_with_full_fill', plot.leg)
+    plot.add_bottom(sm_ratio, 'repr_basic_with_full_fill')
+
+    # Some ranges
+    plot.top_y_min = 0.8*10e-3
+    plot.top_y_max = 50.
+    plot.bottom_y_min = -0.8
+    plot.bottom_y_max = 3.8
+
+    # Apply fixed binning
+    reference_binning = hzz.binning()
+    # reference_binning[0] = -1000. # Underflow left is somehow defined differently
+    plot.make_fixed_widths(reference_binning)
+    plot.top_x_min = 0.
+    plot.bottom_x_min = 0.
+    plot.top_x_max = len(reference_binning)-1
+    plot.bottom_x_max = len(reference_binning)-1
+    # hgg.style().bin_center_offset = -0.17
+    hzz.style().bin_center_offset = 0.17
+    hzz.style().plot_priority = 8
+    plot.add_lines_at_bin_boundaries(range(1,len(reference_binning)-1))
+
+    # leg_xshift = -0.115
+    leg_xshift = 0.02
+    leg_yshift = -0.00
+    # legw = 0.38
+    # legh = 0.41 * 5./6.
+    legw = 0.42
+    legh = 0.54 * 4./6.
+    # plot.leg.set(
+    #     lambda c: 1-c.GetRightMargin() + leg_xshift - legw,
+    #     lambda c: 1-c.GetTopMargin() + leg_yshift - legh,
+    #     lambda c: 1-c.GetRightMargin() + leg_xshift,
+    #     lambda c: 1-c.GetTopMargin() + leg_yshift,
+    #     )
+    plot.leg.set( # Move to left to accommodate more text for overflow
+        lambda c: c.GetLeftMargin() + leg_xshift,
+        lambda c: 1-c.GetTopMargin() + leg_yshift - legh,
+        lambda c: c.GetLeftMargin() + leg_xshift + legw,
+        lambda c: 1-c.GetTopMargin() + leg_yshift,
+        )
+    plot.leg.SetNColumns(1)
+    plot.draw()
+
+    l = differentials.plotting.pywrappers.Latex(
+        # lambda c: 1-c.GetRightMargin() + leg_xshift + 0.02 - legw,
+        # lambda c: 1-c.GetTopMargin()   + leg_yshift - legh - 0.041 - 0.009,
+        lambda c: c.GetLeftMargin() + leg_xshift + 0.02,
+        lambda c: 1-c.GetTopMargin() + leg_yshift - legh - 0.041 - 0.009,
+        '#sigma_{SM} from CYRM-2017-002'
+        )
+    l.SetNDC()
+    l.SetTextAlign(11)
+    l.SetTextFont(42)
+    l.SetTextSize(0.035 + 0.005)
+    l.Draw()
+
+    l2 = differentials.plotting.pywrappers.Latex(
+        lambda c: 1. - c.GetRightMargin() - 0.01,
+        lambda c: plot.overflow_label_base_offset + 0.08*2,
+        'Overflow norm.'
+        )
+    l2.SetNDC()
+    l2.SetTextAlign(31)
+    l2.SetTextFont(42)
+    l2.SetTextSize(0.04)
+    l2.Draw()
+
+    plot.replace_bin_labels([ '30', '55', '95', '120', '200', '#infty' ])
+    plot.wrapup()
+
+#____________________________________________________________________
+@flag_as_option
+def ptjet_plot_all(args):
     spectra = []
     obs_name = 'ptjet'
     obstuple = LatestBinning.obstuple_ptjet
@@ -618,7 +758,7 @@ def ptjet_plot(args):
     plot.draw()
 
     l = differentials.plotting.pywrappers.Latex(
-        # lambda c: 1-c.GetRightMargin() + leg_xshift + 0.02 - legw,        
+        # lambda c: 1-c.GetRightMargin() + leg_xshift + 0.02 - legw,
         # lambda c: 1-c.GetTopMargin()   + leg_yshift - legh - 0.041 - 0.009,
         lambda c: c.GetLeftMargin() + leg_xshift + 0.02,
         lambda c: 1-c.GetTopMargin() + leg_yshift - legh - 0.041 - 0.009,
@@ -626,7 +766,7 @@ def ptjet_plot(args):
         )
     l.SetNDC()
     l.SetTextAlign(11)
-    l.SetTextFont(42) 
+    l.SetTextFont(42)
     l.SetTextSize(0.035 + 0.005)
     l.Draw()
 
@@ -637,7 +777,7 @@ def ptjet_plot(args):
         )
     l2.SetNDC()
     l2.SetTextAlign(31)
-    l2.SetTextFont(42) 
+    l2.SetTextFont(42)
     l2.SetTextSize(0.04)
     l2.Draw()
 
@@ -648,6 +788,123 @@ def ptjet_plot(args):
 #____________________________________________________________________
 @flag_as_option
 def rapidity_plot(args):
+    spectra = []
+    obs_name = 'rapidity'
+    obstuple = LatestBinning.obstuple_rapidity
+    scandict = LatestPaths.scan.rapidity.asimov if args.asimov else LatestPaths.scan.rapidity.observed
+
+    # hgg = differentials.scans.DifferentialSpectrum('hgg', scandict.hgg)
+    # hgg.set_sm(obstuple.hgg.crosssection_over_binwidth(normalize_by_second_to_last_bin_width=False))
+    # hgg.add_stylesheet(style.copy(color=differentials.core.safe_colors.red, marker_style=26))
+    # spectra.append(hgg)
+
+    hzz = differentials.scans.DifferentialSpectrum('hzz', scandict.hzz)
+    hzz.set_sm(obstuple.hzz.crosssection_over_binwidth(normalize_by_second_to_last_bin_width=False))
+    hzz.add_stylesheet(style.copy(color=differentials.core.safe_colors.blue, marker_style=32))
+    spectra.append(hzz)
+
+    # combination = differentials.scans.DifferentialSpectrum('combination', scandict.combination)
+    # combination.set_sm(obstuple.combination.crosssection_over_binwidth(normalize_by_second_to_last_bin_width=False))
+    # combination.add_stylesheet(style.copy(color=1, plot_priority=20))
+    # spectra.append(combination)
+
+    # Align the right boundary of all the spectra, but not at 10000
+    x_max = 2.5
+    for s in spectra:
+        s.no_overflow_label = True
+        s.read()
+        s.give_x_max(x_max)
+        s.draw_method = 'repr_vertical_bar_with_horizontal_lines_dashed_onlymerged'
+
+    if args.table:
+        rowproducer = differentials.plotting.tableproducer.SpectrumRowProducer(hzz.binning(), last_bin_is_overflow=False)
+        rowproducer.do_xs = True
+        table = differentials.plotting.newtables.BaseTable()
+        table.latex_mode(True)
+        table.append(rowproducer.produce_binning_row('$\\absy$'))
+        # table.append(rowproducer.produce(hgg))
+        table.append(rowproducer.produce(hzz))
+        # table.append(rowproducer.produce(combination))
+        print table.produce_table_string()
+        table.produce_to_file('tables_{0}/absy.tex'.format(differentials.core.datestr()))
+        return
+
+    # Get syst only shape
+    hzz_statonly = differentials.scans.DifferentialSpectrum('hzz_statonly', scandict.hzz_statonly)
+    hzz_statonly.set_sm(obstuple.hzz.crosssection_over_binwidth(normalize_by_second_to_last_bin_width=False))
+    hzz_statonly.read()
+    systshapemaker = differentials.systshapemaker.SystShapeMaker()
+    systonly_histogram, systonly_histogram_xs = systshapemaker.get_systonly_histogram(hzz, hzz_statonly)
+
+    # Get SM histograms
+    sm_xs, sm_ratio = get_sm_histograms(obstuple.hzz, normalize_by_second_to_last_bin_width=False, x_max=x_max)
+
+    # Start compiling plot
+    plotname = 'spectra_{0}'.format(obs_name) + ('_asimov' if args.asimov else '')
+    plot = differentials.plotting.plots.SpectraPlot(plotname, spectra)
+    plot.draw_multiscans = True
+    plot.obsname = obs_name
+    # plot.obsunit = '#Delta|y_{H}|'
+    plot.overflow_label_base_offset = 0.35
+
+    # Add the SM and syst-only histograms
+    if systshapemaker.success:
+        plot.add_top(systonly_histogram_xs, systonly_histogram_xs.draw_method, plot.leg)
+        plot.add_bottom(systonly_histogram, systonly_histogram.draw_method)
+    plot.add_top(sm_xs, 'repr_basic_with_full_fill', plot.leg)
+    plot.add_bottom(sm_ratio, 'repr_basic_with_full_fill')
+
+    # Some ranges
+    plot.top_y_min = 5.0
+    plot.top_y_max = 900.
+    plot.bottom_y_min = 0.4
+    plot.bottom_y_max = 2.2
+
+    # Apply fixed binning
+    reference_binning = hzz.binning()
+    plot.make_fixed_widths(reference_binning)
+    plot.top_x_max = len(reference_binning)-1
+    plot.bottom_x_max = len(reference_binning)-1
+    # hgg.style().bin_center_offset = -0.17
+    hzz.style().bin_center_offset = 0.17
+    hzz.style().plot_priority = 8
+    plot.add_lines_at_bin_boundaries(range(1,len(reference_binning)-1))
+
+    leg_xshift = 0.02
+    leg_yshift = -0.00
+    # legw = 0.38
+    # legh = 0.41 * 5./6.
+    legw = 0.42
+    legh = 0.54 * 4./6.
+    plot.leg.set(
+        lambda c: c.GetLeftMargin() + leg_xshift,
+        lambda c: 1-c.GetTopMargin() + leg_yshift - legh,
+        lambda c: c.GetLeftMargin() + leg_xshift + legw,
+        lambda c: 1-c.GetTopMargin() + leg_yshift,
+        )
+    plot.leg.SetNColumns(1)
+    plot.draw()
+
+    plot.base_bottom.GetYaxis().SetNdivisions(505)
+
+    l = differentials.plotting.pywrappers.Latex(
+        lambda c: c.GetLeftMargin() + leg_xshift + 0.02,
+        lambda c: 1-c.GetTopMargin() + leg_yshift - legh - 0.041 - 0.009,
+        '#sigma_{SM} from CYRM-2017-002'
+        )
+    l.SetNDC()
+    l.SetTextAlign(11)
+    l.SetTextFont(42)
+    l.SetTextSize(0.035 + 0.005)
+    l.Draw()
+
+    plot.replace_bin_labels([ '0.0', '0.15', '0.3', '0.6', '0.9', '1.2', '2.5' ])
+    plot.wrapup()
+
+
+#____________________________________________________________________
+@flag_as_option
+def rapidity_plot_all(args):
     spectra = []
     obs_name = 'rapidity'
     obstuple = LatestBinning.obstuple_rapidity
@@ -754,7 +1011,7 @@ def rapidity_plot(args):
         )
     l.SetNDC()
     l.SetTextAlign(11)
-    l.SetTextFont(42) 
+    l.SetTextFont(42)
     l.SetTextSize(0.035 + 0.005)
     l.Draw()
 

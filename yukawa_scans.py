@@ -132,11 +132,11 @@ approval.couplingdependentBRs = differentials.core.AttrDict()
 
 approval.floatingBRs.combination = 'out/workspaces_Apr27/combination_Yukawa_reweighted_floatingBRs.root'
 approval.floatingBRs.hgg         = 'out/workspaces_Apr27/hgg_Yukawa_reweighted_floatingBRs.root'
-approval.floatingBRs.hzz         = 'out/workspaces_Apr27/hzz_Yukawa_reweighted_floatingBRs.root'
+approval.floatingBRs.hzz         = 'out/workspaces_May05/hzz_Yukawa_reweighted_floatingBRs.root'
 
 approval.couplingdependentBRs.combination = 'out/workspaces_Apr27/combination_Yukawa_reweighted_couplingdependentBRs.root'
 approval.couplingdependentBRs.hgg         = 'out/workspaces_Apr27/hgg_Yukawa_reweighted_couplingdependentBRs.root'
-approval.couplingdependentBRs.hzz         = 'out/workspaces_Apr27/hzz_Yukawa_reweighted_couplingdependentBRs.root'
+approval.couplingdependentBRs.hzz         = 'out/workspaces_May05/hzz_Yukawa_reweighted_couplingdependentBRs.root'
 
 @flag_as_option
 def scan_yukawa_NONscalingbbH_floatingBRs(args):

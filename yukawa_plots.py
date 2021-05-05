@@ -89,13 +89,13 @@ approval = differentials.core.AttrDict.create_tree(['fixedBRs', 'couplingdepende
 approval.couplingdependentBRs.asimov.combination   = 'out/Scan_Yukawa_Jun05_combination_NONscalingbbH_couplingdependentBRs_asimov'
 approval.couplingdependentBRs.observed.combination = 'out/Scan_Yukawa_Apr28_combination_NONscalingbbH_couplingdependentBRs'
 approval.couplingdependentBRs.observed.hgg         = 'out/Scan_Yukawa_Apr28_hgg_NONscalingbbH_couplingdependentBRs'
-approval.couplingdependentBRs.observed.hzz         = 'out/Scan_Yukawa_Apr28_hzz_NONscalingbbH_couplingdependentBRs'
+approval.couplingdependentBRs.observed.hzz         = 'out/Scan_Yukawa_May05_hzz_NONscalingbbH_couplingdependentBRs'
 
 # approval.floatingBRs.asimov.combination   = 'out/Scan_Yukawa_May24_combination_NONscalingbbH_floatingBRs_asimov'
 approval.floatingBRs.asimov.combination   = 'out/Scan_Yukawa_Jun09_combination_NONscalingbbH_floatingBRs_asimov'
 approval.floatingBRs.observed.combination = 'out/Scan_Yukawa_Apr28_combination_NONscalingbbH_floatingBRs'
 approval.floatingBRs.observed.hgg         = 'out/Scan_Yukawa_Apr27_hgg_NONscalingbbH_floatingBRs'
-approval.floatingBRs.observed.hzz         = 'out/Scan_Yukawa_Apr28_hzz_NONscalingbbH_floatingBRs'
+approval.floatingBRs.observed.hzz         = 'out/Scan_Yukawa_May05_hzz_NONscalingbbH_floatingBRs'
 
 
 #____________________________________________________________________
@@ -218,15 +218,14 @@ def latest_scenario3(args, splined=False):
 @flag_as_option
 def multicont_Yukawa_NONscalingbbH_floatingBRs(args):
     scans = []
-    scans.append(latest_floatingBRs(args, decay_channel='combination', splined=True))
+    scans.append(latest_floatingBRs(args, decay_channel='hzz', splined=True))
     if not args.asimov:
-        # hzz = latest_floatingBRs(args, decay_channel='hzz', splined=True)
-        hzz = latest_floatingBRs(args, decay_channel='hzz', splined=False)
+        hzz = latest_floatingBRs(args, decay_channel='hzz', splined=True)
         hzz.color = differentials.core.safe_colors.blue
         scans.append(hzz)
-        hgg = latest_floatingBRs(args, decay_channel='hgg', splined=True)
-        hgg.color = differentials.core.safe_colors.red
-        scans.append(hgg)
+        # hgg = latest_floatingBRs(args, decay_channel='hgg', splined=True)
+        # hgg.color = differentials.core.safe_colors.red
+        # scans.append(hgg)
 
     plot = differentials.plotting.plots.MultiContourPlot(
         'multicont_Yukawa_floatingBRs' + ('_asimov' if args.asimov else ''),
@@ -243,14 +242,14 @@ def multicont_Yukawa_NONscalingbbH_floatingBRs(args):
 def multicont_Yukawa_NONscalingbbH_couplingdependentBRs(args):
     do_spline = True
     scans = []
-    scans.append(latest_couplingdependentBRs(args, decay_channel='combination', splined=do_spline))
+    scans.append(latest_couplingdependentBRs(args, decay_channel='hzz', splined=do_spline))
     if not args.asimov:
         hzz = latest_couplingdependentBRs(args, decay_channel='hzz', splined=do_spline)
         hzz.color = differentials.core.safe_colors.blue
         scans.append(hzz)
-        hgg = latest_couplingdependentBRs(args, decay_channel='hgg', splined=do_spline)
-        hgg.color = differentials.core.safe_colors.red
-        scans.append(hgg)
+        # hgg = latest_couplingdependentBRs(args, decay_channel='hgg', splined=do_spline)
+        # hgg.color = differentials.core.safe_colors.red
+        # scans.append(hgg)
 
     plot = differentials.plotting.plots.MultiContourPlot(
         'multicont_Yukawa_couplingdependentBRs' + ('_asimov' if args.asimov else ''),
