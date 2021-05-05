@@ -228,7 +228,8 @@ scan.njets.observed.combination_statonly = 'out/Scan_Apr27_njets_combination_sta
 scan.njets.asimov = AttrDict()
 scan.njets.asimov.combination = 'out/Scan_Apr27_njets_combination_asimov'
 scan.njets.asimov.hgg = 'out/Scan_Apr27_njets_hgg_asimov'
-scan.njets.asimov.hzz = 'out/Scan_Apr27_njets_hzz_asimov'
+scan.njets.asimov.hzz = 'out/Scan_May05_njets_hzz_asimov'
+scan.njets.asimov.hzz_statonly = 'out/Scan_May05_njets_hzz_statonly_asimov'
 scan.njets.asimov.combination_statonly = 'out/Scan_Apr27_njets_combination_statonly_asimov'
 
 scan.ptjet = AttrDict()
@@ -241,7 +242,8 @@ scan.ptjet.observed.combination_statonly = 'out/Scan_Apr27_ptjet_combination_sta
 scan.ptjet.asimov = AttrDict()
 scan.ptjet.asimov.combination = 'out/Scan_Apr27_ptjet_combination_asimov'
 scan.ptjet.asimov.hgg = 'out/Scan_Apr27_ptjet_hgg_asimov'
-scan.ptjet.asimov.hzz = 'out/Scan_Apr27_ptjet_hzz_asimov'
+scan.ptjet.asimov.hzz = 'out/Scan_May05_ptjet_hzz_asimov'
+scan.ptjet.asimov.hzz_statonly = 'out/Scan_May05_ptjet_hzz_statonly_asimov'
 scan.ptjet.asimov.combination_statonly = 'out/Scan_Apr27_ptjet_combination_statonly_asimov'
 
 scan.rapidity = AttrDict()
@@ -254,7 +256,8 @@ scan.rapidity.observed.combination_statonly = 'out/Scan_Apr27_rapidity_combinati
 scan.rapidity.asimov = AttrDict()
 scan.rapidity.asimov.combination = 'out/Scan_Apr27_rapidity_combination_asimov'
 scan.rapidity.asimov.hgg = 'out/Scan_Apr27_rapidity_hgg_asimov'
-scan.rapidity.asimov.hzz = 'out/Scan_Apr27_rapidity_hzz_asimov'
+scan.rapidity.asimov.hzz = 'out/Scan_May05_rapidity_hzz_asimov'
+scan.rapidity.asimov.hzz_statonly = 'out/Scan_May05_rapidity_hzz_statonly_asimov'
 scan.rapidity.asimov.combination_statonly = 'out/Scan_Apr27_rapidity_combination_statonly_asimov'
 
 scan.totalXS = AttrDict()

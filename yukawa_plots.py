@@ -89,12 +89,14 @@ approval = differentials.core.AttrDict.create_tree(['fixedBRs', 'couplingdepende
 approval.couplingdependentBRs.asimov.combination   = 'out/Scan_Yukawa_Jun05_combination_NONscalingbbH_couplingdependentBRs_asimov'
 approval.couplingdependentBRs.observed.combination = 'out/Scan_Yukawa_Apr28_combination_NONscalingbbH_couplingdependentBRs'
 approval.couplingdependentBRs.observed.hgg         = 'out/Scan_Yukawa_Apr28_hgg_NONscalingbbH_couplingdependentBRs'
+approval.couplingdependentBRs.asimov.hzz         = 'out/Scan_Yukawa_May05_hzz_NONscalingbbH_couplingdependentBRs_asimov'
 approval.couplingdependentBRs.observed.hzz         = 'out/Scan_Yukawa_May05_hzz_NONscalingbbH_couplingdependentBRs'
 
 # approval.floatingBRs.asimov.combination   = 'out/Scan_Yukawa_May24_combination_NONscalingbbH_floatingBRs_asimov'
 approval.floatingBRs.asimov.combination   = 'out/Scan_Yukawa_Jun09_combination_NONscalingbbH_floatingBRs_asimov'
 approval.floatingBRs.observed.combination = 'out/Scan_Yukawa_Apr28_combination_NONscalingbbH_floatingBRs'
 approval.floatingBRs.observed.hgg         = 'out/Scan_Yukawa_Apr27_hgg_NONscalingbbH_floatingBRs'
+approval.floatingBRs.asimov.hzz         = 'out/Scan_Yukawa_May05_hzz_NONscalingbbH_floatingBRs_asimov'
 approval.floatingBRs.observed.hzz         = 'out/Scan_Yukawa_May05_hzz_NONscalingbbH_floatingBRs'
 
 
