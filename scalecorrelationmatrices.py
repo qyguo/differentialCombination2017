@@ -8,9 +8,12 @@ Thomas Klijnsma
 # Imports
 ########################################
 
+import os
+
 from OptionHandler import flag_as_option, flag_as_parser_options
 
 import differentials
+import differentials.core as core
 import LatestPaths
 
 import logging
@@ -117,9 +120,16 @@ def yukawa_central_values(args):
 
 @flag_as_option
 def yukawa_scalecorrelations(args):
+    #InputDirTheories = 'out/theories_May05_yukawa_summed/'
+    InputDirTheories = 'out/theories_%s_yukawa_summed/'%(core.datestr())
+    if os.path.isdir(InputDirTheories):
+        logging.info('File {} exists.'.format(InputDirTheories))
+    else:
+        logging.info('File {} does not exists.'.format(InputDirTheories))
+        exit()
     variations = differentials.theory.theory_utils.FileFinder(
         kappab=1.0, kappac=1.0,
-        directory='out/theories_Apr27_yukawa_summed/'
+        directory=InputDirTheories
         ).get()
     sm = [v for v in variations if v.muR==1.0 and v.muF==1.0 and v.Q==1.0][0]
 

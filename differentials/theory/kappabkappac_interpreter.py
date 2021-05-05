@@ -189,6 +189,9 @@ class KappabKappacInterpreter(object):
         for qi in quarkinduced_scaled_theories:
             # Find corresponding gluon induced theory
             logging.debug('Looking for match of {0}'.format(qi.parameter_string()))
+            print "="*51
+            print gluoninduced_theories
+            print "="*51
             for gi in gluoninduced_theories:
                 if qi.equals(gi):
                     logging.debug('-> Match: {0}'.format(gi.parameter_string()))

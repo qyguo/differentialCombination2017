@@ -92,15 +92,15 @@ ws.pth_smH.combWithHbb = 'out/workspaces_Apr27/ws_pth_smH_combWithHbb.root'
 ws.njets = AttrDict()
 ws.njets.combination = 'out/workspaces_Apr27/ws_njets_combination.root'
 ws.njets.hgg = 'out/workspaces_Apr27/ws_njets_hgg.root'
-ws.njets.hzz = 'out/workspaces_Apr27/ws_njets_hzz.root'
+ws.njets.hzz = 'out/workspaces_May05/ws_njets_hzz.root'
 ws.ptjet = AttrDict()
 ws.ptjet.combination = 'out/workspaces_Apr27/ws_ptjet_combination.root'
 ws.ptjet.hgg = 'out/workspaces_Apr27/ws_ptjet_hgg.root'
-ws.ptjet.hzz = 'out/workspaces_Apr27/ws_ptjet_hzz.root'
+ws.ptjet.hzz = 'out/workspaces_May05/ws_ptjet_hzz.root'
 ws.rapidity = AttrDict()
 ws.rapidity.combination = 'out/workspaces_Apr27/ws_rapidity_combination.root'
 ws.rapidity.hgg = 'out/workspaces_Apr27/ws_rapidity_hgg.root'
-ws.rapidity.hzz = 'out/workspaces_Apr27/ws_rapidity_hzz.root'
+ws.rapidity.hzz = 'out/workspaces_May05/ws_rapidity_hzz.root'
 ws.totalXS = AttrDict()
 ws.totalXS.combination = 'out/workspaces_Apr27/combination_inclusive_Mar19_multiSignalModel.root'
 ws.totalXS.hgg = 'out/workspaces_Apr27/Datacard_13TeV_differential_InclusiveNNLOPS_multiSignalModel.root'
@@ -165,10 +165,10 @@ theory.top.uncertainties = ''
 
 
 theory.yukawa = AttrDict()
-theory.yukawa.filedir = 'out/theories_Apr27_yukawa_summed'
-theory.yukawa.correlation_matrix = 'out/scalecorrelations_Apr27_yukawa/corrmat_yukawa_yukawa.txt'
+theory.yukawa.filedir = 'out/theories_May05_yukawa_summed'
+theory.yukawa.correlation_matrix = 'out/scalecorrelations_May05_yukawa/corrmat_yukawa_yukawa.txt'
 theory.yukawa.correlation_matrix_uncorrelated = 'out/scalecorrelations_Apr27_yukawa/corrMat_yukawa_uncorrelated.txt'
-theory.yukawa.uncertainties = 'out/scalecorrelations_Apr27_yukawa/errors_yukawa_yukawa.txt'
+theory.yukawa.uncertainties = 'out/scalecorrelations_May05_yukawa/errors_yukawa_yukawa.txt'
 
 theory.yukawa.filedir_gluoninduced = 'out/theories_Mar09_yukawa_gluoninduced'
 theory.yukawa.filedir_quarkinduced = 'out/theories_Mar09_yukawa_quarkinduced'

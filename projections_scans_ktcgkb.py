@@ -48,8 +48,8 @@ class CombineConfigKTCGKB(CombineConfigKBKC):
     def minimizer_settings_andrew(self):
         logging.warning('Applying minimizer_settings suggested by Andrew')
         self.minimizer_settings = [
-            # '--cminDefaultMinimizerStrategy 0',
-            # '--cminDefaultMinimizerTolerance 0.1',
+            '--cminDefaultMinimizerStrategy 0',
+            '--cminDefaultMinimizerTolerance 0.1',
             # '--minimizerStrategy 0',
             # '--minimizerTolerance 0.1',
             '--cminFallbackAlgo "Minuit2,Migrad,0:0.11"',

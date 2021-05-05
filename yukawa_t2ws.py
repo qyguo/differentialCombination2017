@@ -7,6 +7,8 @@ Thomas Klijnsma
 # Imports
 ########################################
 
+import os
+
 from OptionHandler import flag_as_option
 
 import LatestPaths
@@ -121,6 +123,11 @@ def base_t2ws_fitOnlyTotalXS(args, apply_theory_uncertainties=True, apply_reweig
 
 
 def add_theory(t2ws):
+    if os.path.isdir(LatestPaths.theory.yukawa.filedir):
+        logging.info('File {} exists.'.format(LatestPaths.theory.yukawa.filedir))
+    else:
+        logging.info('File {} does not exists.'.format(LatestPaths.theory.yukawa.filedir))
+        exit()
     coupling_variations = FileFinder(
         muR=1.0, muF=1.0, Q=1.0, directory=LatestPaths.theory.yukawa.filedir
         ).get()

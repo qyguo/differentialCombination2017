@@ -121,7 +121,6 @@ def pth_ggH_scan(args):
 @flag_as_option
 def njets_scan(args):
     print("differentialutils.get_decay_channel_tag(args): ",differentialutils.get_decay_channel_tag(args))
-    print("LatestPaths.ws.njets[differentialutils.get_decay_channel_tag(args)]: ",LatestPaths.ws.njets["combination"])
     print("LatestPaths.ws.njets[differentialutils.get_decay_channel_tag(args)]: ",LatestPaths.ws.njets[differentialutils.get_decay_channel_tag(args)])
     ws = LatestPaths.ws.njets[differentialutils.get_decay_channel_tag(args)]
     config = differential_config(args, ws, 'njets')

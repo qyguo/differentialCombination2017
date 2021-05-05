@@ -282,6 +282,8 @@ class BaseCombineScan(object):
         if len(self.input.saveFunctions) > 0:
             cmd.append('--saveSpecifiedFunc ' + ','.join(self.input.saveFunctions))
 
+        cmd.append('--cminDefaultMinimizerStrategy  0')
+
         logging.info("self.onBatch = {}".format(self.onBatch))
         if self.onBatch:
             logging.info("os.environ['HOSTNAME'] : {}".format(os.environ['HOSTNAME']))
