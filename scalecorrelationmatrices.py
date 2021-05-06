@@ -54,9 +54,15 @@ def top_central_values(args):
 
 @flag_as_option
 def top_scalecorrelations(args):
+    InputDirTheories = LatestPaths.theory.top.filedir
+    if os.path.isdir(InputDirTheories):
+        logging.info('File {} exists.'.format(InputDirTheories))
+    else:
+        logging.info('File {} does not exists.'.format(InputDirTheories))
+        exit()
     variations = differentials.theory.theory_utils.FileFinder(
         ct=1.0, cg=0.0, cb=1.0,
-        directory=LatestPaths.theory.top.filedir
+        directory=InputDirTheories
         ).get()
     sm = [v for v in variations if v.muR==1.0 and v.muF==1.0 and v.Q==1.0][0]
 
