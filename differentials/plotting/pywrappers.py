@@ -27,8 +27,8 @@ class Legend(object):
         # first set defaults
         self._x1 = lambda c: c.GetLeftMargin()
         self._x2 = lambda c: 1. - c.GetRightMargin()
-        self._y1 = lambda c: 1. - c.GetTopMargin() - 0.15
-        self._y2 = lambda c: 1. - c.GetTopMargin()
+        self._y1 = lambda c: 1. - c.GetTopMargin() - 0.15 
+        self._y2 = lambda c: 1. - c.GetTopMargin() 
         self.set(x1, y1, x2, y2)
 
         self.auto_n_columns = True
@@ -265,7 +265,13 @@ class CMS_Latex_lumi(Latex):
     Specific implementation of Latex, that prints "CMS Preliminary" or
     "CMS Supplementary" at the default positions w.r.t. a TPad
     """
-    CMS_lumi = 35.9
+    #CMS_lumi = 35.9
+    #CMS_lumi = 59.83
+    #CMS_lumi = 41.48
+    #CMS_lumi = 36.31
+    #CMS_lumi = 137.62
+    CMS_lumi = 138
+    #CMS_lumi = 77.79
     apply_text_offset = True
     text_size    = 0.05
 

@@ -23,6 +23,8 @@ def implement_freely_floating_BRs(self):
     self.chapter('Defining freely floating BRs')
     self.modelBuilder.doVar('brmodifier_hgg[1.0,-1000.0,1000.0]')
     self.modelBuilder.doVar('brmodifier_hzz[1.0,-1000.0,1000.0]')
+    #self.modelBuilder.doVar('brmodifier_hgg[1.0,1.0,1.0]')
+    #self.modelBuilder.doVar('brmodifier_hzz[1.0,1.0,1.0]')
     
     if self.constrain_ratio_bb_ZZ:
         self.implement_constrain_ratio_bb_ZZ()

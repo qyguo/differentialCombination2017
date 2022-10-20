@@ -174,8 +174,12 @@ def t2ws_Yukawa_NOTscalingbbH_couplingdependentBRs(args):
     t2ws = base_t2ws(args)
     t2ws.extra_options.append('--PO BRs_kappa_dependent=True')
     t2ws.tags.append('couplingdependentBRs')
-    t2ws.run()
+    #t2ws.run()
+    if args.lumiScale:
+        t2ws.tags.append('lumiScale')
+        t2ws.extra_options.append('--PO lumiScale=True')
 
+    t2ws.run()
 
 
 #____________________________________________________________________

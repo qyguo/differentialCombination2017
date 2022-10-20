@@ -49,6 +49,9 @@ def main():
     parser.add_argument( '--no-tag', action='store_true' )
     parser.add_argument( '--projection-tag', action='store_true' )
 
+    parser.add_argument( '--couplingdependentBRs', action='store_true' )
+    parser.add_argument( '--floatingBRs', action='store_true' )
+
     #____________________________________________________________________
     # New style imports
     optionHandler = OptionHandler()

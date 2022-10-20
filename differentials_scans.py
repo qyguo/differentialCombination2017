@@ -170,9 +170,10 @@ def pth_ggH_scan_hbb_fixedOOA(args):
 #____________________________________________________________________
 # Helpers
 
+lumiMultiplier137 = 3.8161559
 lumiMultiplier300 = 8.356546
 lumiMultiplier3000 = 83.56546
-lumiMultiplier = lumiMultiplier300
+lumiMultiplier = lumiMultiplier137
 
 def differential_config(args, ws, obs_name):
     base_config = combine.CombineConfig(args)
@@ -341,10 +342,11 @@ def pth_ggH_t2ws_noxhunc(args):
 
 @flag_as_option
 def pth_smH_t2ws(args):
-    raise NotImplementedError('Do the same thing as for ggH')
+    #raise NotImplementedError('Do the same thing as for ggH')
     t2ws = basic_t2ws('pth_smH', differentialutils.get_decay_channel_tag(args))
     if args.hzz:
-        t2ws.extra_options.append('--PO \'binning=0,15,30,80,200\'')
+        #t2ws.extra_options.append('--PO \'binning=0,15,30,80,200\'')
+        t2ws.make_maps_from_processes(binning=[0, 15, 30, 80, 200], add_overflow=True)
     if args.hbb:
         t2ws.extra_options.append('--PO \'binning=200,350,600\'')
     if args.hgg or args.combination or args.combWithHbb or args.hbb:

@@ -213,7 +213,8 @@ def defineYieldParameters(self):
                 xH_yieldParameter.add_variable(scaleParameter[decayChannel])
 
     if self.MakeLumiScalable:
-        self.modelBuilder.doVar('lumiScale[8.356546]')
+        #self.modelBuilder.doVar('lumiScale[8.356546]')
+        self.modelBuilder.doVar('lumiScale[3.8161559]')
         # Luminosity modifier works on all parameters
         bkg_yieldParameter.add_variable('lumiScale')
         # one_yieldParameter.add_variable('lumiScale')

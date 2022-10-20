@@ -129,14 +129,50 @@ def all_scans_Yukawa(args_original):
 approval = differentials.core.AttrDict()
 approval.floatingBRs = differentials.core.AttrDict()
 approval.couplingdependentBRs = differentials.core.AttrDict()
+approval.normal = differentials.core.AttrDict()
 
 approval.floatingBRs.combination = 'out/workspaces_Apr27/combination_Yukawa_reweighted_floatingBRs.root'
 approval.floatingBRs.hgg         = 'out/workspaces_Apr27/hgg_Yukawa_reweighted_floatingBRs.root'
-approval.floatingBRs.hzz         = 'out/workspaces_May05/hzz_Yukawa_reweighted_floatingBRs.root'
+#approval.floatingBRs.hzz         = 'out/workspaces_Sep04_all/hzz_Yukawa_reweighted_floatingBRs.root'
+#approval.floatingBRs.hzz         = 'out/workspaces_Sep04_2016/hzz_Yukawa_reweighted_floatingBRs.root'
+approval.floatingBRs.hzz         = 'out/workspaces_Sep04_all/hzz_Yukawa_reweighted_floatingBRs_fixBR1.root'
 
 approval.couplingdependentBRs.combination = 'out/workspaces_Apr27/combination_Yukawa_reweighted_couplingdependentBRs.root'
 approval.couplingdependentBRs.hgg         = 'out/workspaces_Apr27/hgg_Yukawa_reweighted_couplingdependentBRs.root'
-approval.couplingdependentBRs.hzz         = 'out/workspaces_May05/hzz_Yukawa_reweighted_couplingdependentBRs.root'
+approval.couplingdependentBRs.hzz         = 'out/workspaces_Sep04_all/hzz_Yukawa_reweighted_couplingdependentBRs.root'
+
+approval.normal.hzz         = 'out/workspaces_Sep21/hzz_Yukawa_reweighted.root'
+
+
+@flag_as_option
+def scan_yukawa_NONscalingbbH_normal(args):
+    # args = differentialutils.set_one_decay_channel(args, 'combination')
+    config = basic_config(args)
+    config.tags.append('NONscalingbbH')
+    config.tags.append('normal')
+
+    config.set_parameter_range('kappab', -50., 50.)
+    config.set_parameter_range('kappac', -90., 90.)
+    #config.nPoints       = 60*60
+    #config.nPoints       = 100*200
+    config.nPoints       = 100*100
+
+    # For asimov, around 15 min per point for the combination
+    config.nPointsPerJob = 5
+    config.queue         = 'short.q'
+
+    if args.hzz:
+        config.set_parameter_range('kappab', -10., 20.)
+        config.set_parameter_range('kappac', -50., 50.)
+        config.nPoints       = 100*100
+        config.nPointsPerJob = 200
+        config.deltaNLLCutOff = 100.
+        config.queue         = 'short.q'
+
+    config.datacard = approval.normal[config.decay_channel]
+    differentialutils.run_postfit_scan(config)
+
+###
 
 @flag_as_option
 def scan_yukawa_NONscalingbbH_floatingBRs(args):
@@ -147,7 +183,9 @@ def scan_yukawa_NONscalingbbH_floatingBRs(args):
 
     config.set_parameter_range('kappab', -50., 50.)
     config.set_parameter_range('kappac', -90., 90.)
-    config.nPoints       = 35*35
+    #config.nPoints       = 60*60
+    #config.nPoints       = 100*200
+    config.nPoints       = 100*100
 
     # For asimov, around 15 min per point for the combination
     config.nPointsPerJob = 5
@@ -156,7 +194,12 @@ def scan_yukawa_NONscalingbbH_floatingBRs(args):
     if args.hzz:
         config.set_parameter_range('kappab', -10., 20.)
         config.set_parameter_range('kappac', -50., 50.)
-        config.nPointsPerJob = 300
+        #config.set_parameter_range('kappab', -50., 50.)
+        #config.set_parameter_range('kappac', -90., 90.)
+        config.nPoints       = 100*100
+        config.nPointsPerJob = 200
+        config.deltaNLLCutOff = 100.
+        #config.nPointsPerJob = 100
         config.queue         = 'short.q'
 
     config.datacard = approval.floatingBRs[config.decay_channel]
@@ -169,20 +212,34 @@ def scan_yukawa_NONscalingbbH_couplingdependentBRs(args):
     config = basic_config(args)
     config.tags.append('NONscalingbbH')
     config.tags.append('couplingdependentBRs')
+    config.deltaNLLCutOff = 100.
 
     config.set_parameter_range('kappab', -2., 2.)
     config.set_parameter_range('kappac', -8., 8.)
-    config.nPoints       = 30*30
+    #config.nPoints       = 150*200
+    #config.nPoints       = 100*200
+    config.nPoints       = 100*100
     config.nPointsPerJob = 5
     config.queue         = 'short.q'
 
     if args.hzz:
-        config.set_parameter_range('kappab', -5., 5.)
-        config.set_parameter_range('kappac', -15., 15.)
-        config.nPointsPerJob = 300
+        #config.set_parameter_range('kappab', -5., 5.)
+        #config.set_parameter_range('kappac', -15., 15.)
+        config.set_parameter_range('kappab', -2., 2.)
+        config.set_parameter_range('kappac', -8., 8.)
+        config.nPointsPerJob = 200
+        #config.nPointsPerJob = 100
         config.queue         = 'short.q'
 
     config.datacard = approval.couplingdependentBRs[config.decay_channel]
+
+    if args.lumiScale:
+        #config.datacard = 'out/workspaces_Feb12/combinedCard_Nov03_CouplingModel_Yukawa_withTheoryUncertainties_lumiScale.root'
+        config.freezeNuisances.append('lumiScale')
+        config.tags.append('lumi137fb')
+        config.hardPhysicsModelParameters.append( 'lumiScale=3.8161558' )
+        config.datacard = approval.couplingdependentBRs[config.decay_channel].replace('.root','_lumiScale.root')
+
     differentialutils.run_postfit_fastscan_scan(config)
 
 
@@ -399,34 +456,70 @@ def scan_yukawa_unreweighted(args):
 
 @flag_as_option
 def scan_yukawa_oneKappa(args):
-    args = differentialutils.set_one_decay_channel(args, 'combination')
+    args = differentialutils.set_one_decay_channel(args, 'hzz')
+    #args = differentialutils.set_one_decay_channel(args, 'combination')
     for kappa in [
-            # 'kappac',
+            'kappac',
             'kappab'
             ]:
         config = basic_config(args)
-        config.datacard = LatestPaths.ws.yukawa.nominal[config.decay_channel]
-        config.nPoints       = 72
-        config.nPointsPerJob = 3
+        #config.datacard = LatestPaths.ws.yukawa.nominal[config.decay_channel]
+        #config.datacard = LatestPaths.ws.yukawa.couplingdependentBRs[config.decay_channel]
+        #config.datacard = approval.couplingdependentBRs[config.decay_channel]
+
+        config.nPoints       = 5000
+        config.nPointsPerJob = 50
         config.queue         = 'short.q'
         config.POIs          = [ kappa ]
 
         otherKappa = { 'kappab' : 'kappac', 'kappac' : 'kappab' }[kappa]
-        config.floatNuisances.append(otherKappa)
+        #config.floatNuisances.append(otherKappa)
+        config.freezeNuisances.append(otherKappa)
         config.tags.append('oneKappa_' + kappa)
 
         for i, range_str in enumerate(config.PhysicsModelParameterRanges):
             if range_str.startswith('kappab'):
+                #config.PhysicsModelParameterRanges[i] = 'kappab={0},{1}'.format(-2.0, 2.0)
                 config.PhysicsModelParameterRanges[i] = 'kappab={0},{1}'.format(-7.0, 9.0)
-        if kappa == 'kappab':
-            config.nPoints = 80
-            config.nPointsPerJob = 2
+
+        if args.couplingdependentBRs:
+            config.datacard = approval.couplingdependentBRs[config.decay_channel]
+
+            if kappa == 'kappab':
+                #config.nPoints = 80
+                #config.nPointsPerJob = 2
+                config.set_parameter_range('kappac', 1.0, 1.0)
+                config.set_parameter_range('kappab', -2.0, 2.0)
+            if kappa == 'kappac':
+                #config.nPoints = 80
+                #config.nPointsPerJob = 2
+                config.set_parameter_range('kappab', 1.0, 1.0)
+                config.set_parameter_range('kappac', -8.0, 8.0)
+
+        if args.floatingBRs:
+            config.datacard = approval.floatingBRs[config.decay_channel]
+            if kappa == 'kappab':
+                #config.nPoints = 80
+                #config.nPointsPerJob = 2
+                config.set_parameter_range('kappac', 1.0, 1.0)
+                #config.set_parameter_range('kappab', -15.0, 15.0)
+                #fixedBR
+                config.set_parameter_range('kappab', -6.0, 6.0)
+            if kappa == 'kappac':
+                #config.nPoints = 80
+                #config.nPointsPerJob = 2
+                config.set_parameter_range('kappab', 1.0, 1.0)
+                #config.set_parameter_range('kappac', -40.0, 40.0)
+                config.set_parameter_range('kappac', -15.0, 20.0)
+
 
         if args.lumiScale:
-            config.datacard = 'out/workspaces_Feb12/combinedCard_Nov03_CouplingModel_Yukawa_withTheoryUncertainties_lumiScale.root'
+            #config.datacard = 'out/workspaces_Feb12/combinedCard_Nov03_CouplingModel_Yukawa_withTheoryUncertainties_lumiScale.root'
             config.freezeNuisances.append('lumiScale')
-            config.tags.append('lumi300fb')
-            config.hardPhysicsModelParameters.append( 'lumiScale=8.356546' )
+            config.tags.append('lumi137fb')
+            config.hardPhysicsModelParameters.append( 'lumiScale=3.8161559' )
+            #config.tags.append('lumi300fb')
+            #config.hardPhysicsModelParameters.append( 'lumiScale=8.356546' )
 
         differentialutils.scan_directly(config)
 
@@ -469,8 +562,10 @@ def scan_yukawa_lumiScale(real_args):
     config = basic_config(args)
     config.datacard = LatestPaths.ws.yukawa.lumiScale
     config.freezeNuisances.append('lumiScale')
-    config.hardPhysicsModelParameters.append( 'lumiScale=8.356546' )
-    config.tags.append('lumi300fb')
+    config.hardPhysicsModelParameters.append( '3.8161559' )
+    config.tags.append('lumi137fb')
+    #config.hardPhysicsModelParameters.append( 'lumiScale=8.356546' )
+    #config.tags.append('lumi300fb')
     # config.hardPhysicsModelParameters.append( 'lumiScale=83.56546' )
     # config.tags.append('lumi3000fb')
     differentialutils.run_postfit_fastscan_scan(config)

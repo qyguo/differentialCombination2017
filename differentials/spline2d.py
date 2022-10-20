@@ -343,6 +343,7 @@ class Base2DWrapper(BaseWrapper):
         return r
 
     def to_hist(self, nx=100, ny=100, x_min=None, x_max=None, y_min=None, y_max=None):
+        print "here1"
         """Take standard spline ranges by default, but allow smaller or bigger rangers"""
         name = self.name()
         H = Histogram2D(name, name)

@@ -79,7 +79,8 @@ class LumiScaleDifferentialModel(DifferentialModel):
     def doParametersOfInterest(self):
         print '[in LumiScaleDifferentialModel:doParametersOfInterest]'
         DifferentialModel.doParametersOfInterest(self)
-        self.modelBuilder.doVar('lumiScale[8.356546]')
+        #self.modelBuilder.doVar('lumiScale[8.356546]')
+        self.modelBuilder.doVar('lumiScale[3.8161559]')
         for y in self.yield_parameters:
             new_y = 'lumiScale_times_' + y
             expr = 'prod::{0}(lumiScale,{1})'.format(new_y, y)

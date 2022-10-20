@@ -106,7 +106,11 @@ class Single2DHistPlot(PlotBase):
 
     def draw(self):
         c.Clear()
+        print "WoW_Spline, ", self.plotname
         c.set_margins_2D()
+        c.resize_temporarily(1000, 800)
+        c.SetRightMargin(0.13)
+        c.SetLeftMargin(0.13+0.05)
 
         leg = pywrappers.Legend(
             c.GetLeftMargin() + 0.01,
@@ -164,7 +168,7 @@ class Single2DHistPlot(PlotBase):
         self.H2.Draw('repr_bestfitpoint') # Redraw since the SM frequently overlaps the BF for Asimov
 
         pywrappers.ContourDummyLegend(
-            c.GetLeftMargin() + 0.11,
+            c.GetLeftMargin() + 0.11 - 0.05,
             1. - c.GetTopMargin() - 0.1,
             1. - c.GetRightMargin() - 0.01,
             1. - c.GetTopMargin() - 0.01,
@@ -489,9 +493,13 @@ class MultiContourPlot(PlotBase):
             if self.y_max is None: self.y_max = max([H.y_max() for H in self.histograms])
 
     def draw(self, wait=False):
+        print "WoW_notSpline, ", self.plotname
         super(MultiContourPlot, self).draw()
-        c.resize_temporarily(870, 800)
+        #c.resize_temporarily(870, 800)
+        c.resize_temporarily(1000, 800)
         c.SetRightMargin(0.13)
+        c.SetLeftMargin(0.13+0.05)
+        #c.SetRightMargin(0.13+0.05)
 
         if self.use_first_scan_as_base:
             if isinstance(self.scans[0], differentials.plotting.pywrappers.Histogram2D):

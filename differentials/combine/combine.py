@@ -217,7 +217,8 @@ class BaseCombineScan(object):
         if len(self.input.PhysicsModelParameterRanges) > 0:
             cmd.append( '--setParameterRanges ' + ':'.join(self.input.PhysicsModelParameterRanges) )
         if len(self.input.floatNuisances) > 0:
-            cmd.append( '--floatNuisances ' + ','.join(self.input.floatNuisances) )
+            #cmd.append( '--floatNuisances ' + ','.join(self.input.floatNuisances) )
+            cmd.append( '--floatParameters ' + ','.join(self.input.floatNuisances) )
         if len(self.freezeNuisances) > 0:
             cmd.append( '--freezeParameters ' + ','.join(self.freezeNuisances) )
         cmd.extend(self.set_physics_model_parameters())
@@ -297,7 +298,8 @@ class BaseCombineScan(object):
                 #     .format( taskName, self.input.queue, self.input.jobPriority ),
                 #     )
                 cmd.append(
-                    '--job-mode condor  --task-name {0} --sub-opts=\'+JobFlavour="espresso"\''.format(taskName)
+                    #'--job-mode condor  --task-name {0} --sub-opts=\'+JobFlavour="espresso"\''.format(taskName)
+                    '--job-mode condor  --task-name {0} --sub-opts=\'+JobFlavour="workday"\''.format(taskName)
                     )
             else:
                 # cmd.append(
@@ -305,7 +307,8 @@ class BaseCombineScan(object):
                 #     .format( taskName, self.input.queue ),
                 #     )
                 cmd.append(
-                    '--job-mode condor  --task-name {0} --sub-opts=\'+JobFlavour="espresso"\''.format(taskName)
+                    #'--job-mode condor  --task-name {0} --sub-opts=\'+JobFlavour="espresso"\''.format(taskName)
+                    '--job-mode condor  --task-name {0} --sub-opts=\'+JobFlavour="workday"\''.format(taskName)
                     )
                 # JobFlavour options:
                 #   espresso        = 20min

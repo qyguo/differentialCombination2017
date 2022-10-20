@@ -26,7 +26,8 @@ def rename_processes_hgg_pth_ggH(args):
 @flag_as_option
 def renumber_processes_hzz_pth_ggH(args):
     renumber_processes_hzz_pth(
-        'suppliedInput/fromDavid/PTH_Jan24_newBinning/ggH/hzz4l_comb_13TeV_xs.txt'
+        #'suppliedInput/fromDavid/PTH_Jan24_newBinning/ggH/hzz4l_comb_13TeV_xs.txt'
+        'suppliedInput/fromDavid/PTH_Sep04_all_newBinning/ggH/hzz4l_comb_13TeV_xs.txt'
         )
 @flag_as_option
 def rename_processes_hgg_pth_smH(args):
@@ -36,7 +37,8 @@ def rename_processes_hgg_pth_smH(args):
 @flag_as_option
 def renumber_processes_hzz_pth_smH(args):
     renumber_processes_hzz_pth(
-        'suppliedInput/fromDavid/PTH_Jan24_newBinning/smH/hzz4l_comb_13TeV_xs.txt'
+        #'suppliedInput/fromDavid/PTH_Jan24_newBinning/smH/hzz4l_comb_13TeV_xs.txt'
+        'suppliedInput/fromDavid/PTH_Sep04_all_newBinning/smH/hzz4l_comb_13TeV_xs.txt'
         )
 
 # Hgg differentials: njets, ptjet, rapidity
@@ -97,7 +99,8 @@ def combine_all_cards(args):
 def combine_pth_ggH(args):
     decay_channel = differentialutils.get_decay_channel_tag(args)
     out_card = 'suppliedInput/{0}_pth_ggH_{1}.txt'.format(
-            decay_channel, core.datestr()
+            decay_channel, "Sep04_all"
+            #decay_channel, core.datestr()
             )
     cmd = []
     if args.combWithHbb or args.combination or args.hgg:
@@ -112,7 +115,8 @@ def combine_pth_ggH(args):
 def combine_pth_smH(args):
     decay_channel = differentialutils.get_decay_channel_tag(args)
     out_card = 'suppliedInput/{0}_pth_smH_{1}.txt'.format(
-            decay_channel, core.datestr()
+            decay_channel, "Sep04_all"
+            #decay_channel, core.datestr()
             )
     cmd = []
     if args.combWithHbb or args.combination or args.hgg:
@@ -189,11 +193,21 @@ def combine_cards_Yukawa(args):
         'hzz_PTH_GT200_cat2e2mu',
         'hzz_PTH_GT200_cat4e',
         'hzz_PTH_GT200_cat4mu',
+        'hzz_PTH_200_350_cat2e2mu',
+        'hzz_PTH_200_350_cat4e',
+        'hzz_PTH_200_350_cat4mu',
+        'hzz_PTH_350_600_cat2e2mu',
+        'hzz_PTH_350_600_cat4e',
+        'hzz_PTH_350_600_cat4mu',
+        'hzz_PTH_GT600_cat2e2mu',
+        'hzz_PTH_GT600_cat4e',
+        'hzz_PTH_GT600_cat4mu',
         ]
 
     decay_channel = differentialutils.get_decay_channel_tag(args)
     out_card = 'suppliedInput/Yukawa_{0}_pth_ggH_{1}.txt'.format(
-            decay_channel, core.datestr()
+            decay_channel, "Sep04_all"
+            #decay_channel, core.datestr()
             )
 
     cmd = []

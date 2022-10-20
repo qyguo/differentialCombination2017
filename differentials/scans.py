@@ -316,7 +316,7 @@ class ScanPrimitive(object):
 
     tree_name = 'limit'
     filter_negatives = True
-    deltaNLL_threshold = -0.01
+    deltaNLL_threshold = -0.1
 
     def __init__(self):
         self.scandirs = []
@@ -532,6 +532,7 @@ class Scan(ScanPrimitive):
             )
 
         if read_immediately: self.read()
+        #self.uncertaintycalculator = UncertaintyCalculator()
 
 
     def read(self, keep_chain=False):
@@ -551,6 +552,7 @@ class Scan(ScanPrimitive):
         else:
             self.entries = self.read_chain(root_files, variables)
         self.filter_entries()
+        #self.filter_entries_()
 
     def fix_bestfit_to_one(self):
         unc = self.unc._asdict()
@@ -559,6 +561,15 @@ class Scan(ScanPrimitive):
         unc['left_error'] += dmu
         unc['right_error'] -= dmu
         self.unc = Unc(**unc)
+
+    def filter_entries_(self):
+        new_entries = []
+        for entry in self.entries:
+            if entry.x < -0.5:
+                new_entries.append(entry)
+        self.entries = new_entries
+
+
 
     def filter_entries(self):
         super(Scan, self).filter_entries()
@@ -580,7 +591,10 @@ class Scan(ScanPrimitive):
 
     def create_uncertainties(self, inplace=True, do_95percent_CL=False):
         logging.debug('Determining uncertainties for scan (x={0}, y={1})'.format(self.x_variable, self.y_variable))
-        if do_95percent_CL: self.uncertaintycalculator = 3.841 / 2. # account dNLL missing the factor 0.5
+        if do_95percent_CL: 
+            self.uncertaintycalculator = 3.841 / 2. # account dNLL missing the factor 0.5
+            self.uncertainty_calculator.cutoff = 3.841 / 2.
+
         unc = self.uncertainty_calculator.create_uncertainties(xs = self.x(), deltaNLLs = self.deltaNLL())
         if unc.is_hopeless:
             logging.error(
@@ -858,6 +872,9 @@ class Scan2D(ScanPrimitive):
     def plot(self, plotname, draw_style='repr_2D_with_contours'):
         c.Clear()
         c.set_margins_2D()
+        #c.set_margins_2D(0.17,0.15)
+        #c.SetLeftMargin(0.2)
+        #c.SetRightMargin(0.2)
 
         # leg = plotting.pywrappers.Legend(
         #     c.GetLeftMargin() + 0.01,

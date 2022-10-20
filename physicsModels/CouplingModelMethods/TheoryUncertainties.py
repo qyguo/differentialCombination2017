@@ -241,7 +241,11 @@ def Decorrelate( self, covarianceMatrix ):
     for i in xrange(N):
         for j in xrange(N):
             eigen_value = eigenValues(j)
-            if abs(eigen_value) < 1e-9:
+            #if eigen_value < 0:
+            #    print '[WARNING] Found abs(eigen_value) = {0} < 0; rounding to abs'.format(eigen_value)
+            #    eigen_value = abs(eigen_value)
+            #if abs(eigen_value) < 1e-9:
+            if eigen_value < 1e-9:
                 print '[WARNING] Found abs(eigen_value) = {0} < 1e-6; rounding to 0.0'.format(eigen_value)
                 eigen_value = 0.0
             decorrelatedMatrix[i][j] = eigenVectors(i,j) * sqrt(eigen_value)

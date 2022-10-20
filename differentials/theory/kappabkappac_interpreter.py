@@ -31,7 +31,8 @@ class KappabKappacInterpreter(object):
     """docstring for KappabKappacInterpreter"""
 
     SM_qi = AttrDict(
-        path = 'suppliedInput/fromPier/13tev-pth_quarkInduced_Aug04/higgs_plus_jet_13tev_1_1_mur050_muf050.pth',
+        #path = 'suppliedInput/fromPier/13tev-pth_quarkInduced_Aug04/higgs_plus_jet_13tev_1_1_mur050_muf050.pth',
+        path = 'suppliedInput/fromQianying/13tev-pth_quarkInduced_Apr18/higgs_plus_jet_13tev_1_1_mur050_muf050.pth',
         is_SM = True,
         kappab=1., kappac=1., muR=1., muF=1., Q=1.
         )
@@ -112,7 +113,8 @@ class KappabKappacInterpreter(object):
     def read_attr_dicts(self):
         self.coupling_variations_qi = []
         self.scale_variations_qi = []
-        for theory_file in glob.glob('suppliedInput/fromPier/13tev-pth_quarkInduced_Aug04/*.pth'):
+        #for theory_file in glob.glob('suppliedInput/fromPier/13tev-pth_quarkInduced_Aug04/*.pth'):
+        for theory_file in glob.glob('suppliedInput/fromQianying/13tev-pth_quarkInduced_Apr18/*.pth'):
             if theory_file == self.SM_qi.path: continue
             d = self.make_attr_dict(theory_file)
             if self.is_scale_variation(d):
@@ -382,9 +384,11 @@ class YukawaTheoryQuarkInduced(YukawaTheory):
     sm_is_defined = False
     sm = None
 
-    mb_old = 4.65
+    #mb_old = 4.65
+    mb_old = 2.963
     mb_new = 2.963
-    mc_old = 1.275
+    #mc_old = 1.275
+    mc_old = 0.655
     mc_new = 0.655
 
     def __init__(self, d):
